@@ -1,0 +1,111 @@
+﻿<Window x:Class="LibraryManager.Windows.StartWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibraryManager.Windows"
+        mc:Ignorable="d"
+        Title="Авторизация" 
+        Height="500" 
+        Width="800"
+        WindowStartupLocation="CenterScreen"
+        Background="#FF312C28"
+        ResizeMode="NoResize"
+        KeyDown="Window_KeyDown"
+        >
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="133"/>
+            <ColumnDefinition Width="267"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        
+        <Border Background="#FFF"
+                Grid.ColumnSpan="2"
+                Grid.RowSpan="8"
+                Margin="15"
+                CornerRadius="15"/>
+
+        <TextBlock Text="Авторизация" 
+                   Grid.Row="1" 
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontSize="25"
+                   FontFamily="Franklin Gothic Demi"
+                   Margin="0 0 0 30"
+                   
+                   />
+        <TextBlock Text="Логин" 
+                   Grid.Row="2" 
+                   Grid.Column="0" 
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Right"
+                   Margin="10 0 30 0"
+                   FontSize="17"/>
+
+        <TextBox x:Name="txtLogin" 
+                 Grid.Row="2" 
+                 Grid.Column="1" 
+                 Width="200"
+                 Height="30"
+                 FontSize="16"
+                 VerticalContentAlignment="Center"
+                 FontFamily="Corbel"
+                 Margin="0 0 30 0"
+                 KeyDown="txtLogin_KeyDown"
+                 />
+
+        <TextBlock Text="Пароль" 
+                   Grid.Row="3" 
+                   Grid.Column="0" 
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Right"
+                   Margin="10 0 28 0"
+                   FontSize="17"/>
+
+        <PasswordBox x:Name="pswPassword" 
+                     Grid.Row="3" 
+                 Grid.Column="1" 
+                 Width="200"
+                 Height="30"
+                 FontSize="16"
+                 VerticalContentAlignment="Center"
+                 FontFamily="Tempus Sans ITC"
+                 Margin="0 0 30 0"
+                 KeyDown="pswPassword_KeyDown"/>
+
+        <Button x:Name="btnLogin"
+                Grid.Column="0"
+                Grid.Row="5"
+                Grid.ColumnSpan="2"
+                Width="180"
+                Height="30"
+                Content="Войти"
+                FontSize="15" 
+                Click="btnLogin_Click_1"
+                />
+
+        <Button x:Name="btnClose"
+                Grid.Column="0"
+                Grid.Row="6"
+                Grid.ColumnSpan="2"
+                Width="180"
+                Height="30"
+                Content="Отмена"
+                FontSize="15"
+                Click="btnClose_Click"/>
+    </Grid>
+</Window>
