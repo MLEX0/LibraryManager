@@ -32,23 +32,24 @@ namespace LibraryManager.Windows
 
                 if (user.IdRole == 1)//Вход по роли пользователя --<Допилить>--
                 {
-                    MainWin MainWin = new MainWin(user);
+                    AdminWin AdminWin = new AdminWin(user);
                     this.Hide();
-                    MainWin.ShowDialog();
-                    this.Show();
+                    AdminWin.ShowDialog();
+                    this.Close();
                 }
                 else if (user.IdRole == 2)
                 {
-                    AdminWin AdminWin = new AdminWin();
-                    AdminWin.Show();
-                    this.Close();
+                    MainWin mainWin = new MainWin(user);
+                    this.Hide();
+                    mainWin.ShowDialog();
+                    this.Show();
                 }
 
             }
             else
             {
                 _ErrorCounter++;
-                if (_ErrorCounter > 20)//Неправильный ввод пароля
+                if (_ErrorCounter > 200)//Неправильный ввод пароля
                 {
                     MessageBox.Show("Обнаружен слишком низкий IQ " +
                         "\nПриведите к рабочей станции человека \nс " +

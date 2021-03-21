@@ -39,11 +39,14 @@ namespace LibraryManager.Windows
             {
                 if (User.IdRole == 1)
                 {
-                    //Скрыть кнопки --<Допилить>--
-                }
-                if (User.IdRole == 3)
-                {
+                    txtNameEmpl.Text = $"{User.LastName.ToString()} {User.FirstName.ToString()}";
                     //Показать кнопки --<Допилить>--
+                }
+                if (User.IdRole == 2)
+                {
+                    txtNameEmpl.Text = $"{User.LastName.ToString()} {User.FirstName.ToString()}";
+                    btnBack.Visibility = Visibility.Hidden;
+                    //Скрыть кнопки --<Допилить>--
                 }
             }
             catch //убрать к хренам из-за ненадобности
@@ -52,6 +55,11 @@ namespace LibraryManager.Windows
                     "Пожалуйста, обратитесь к Администратору!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -133,8 +133,14 @@
     <Compile Include="Windows\AdminWin.xaml.cs">
       <DependentUpon>AdminWin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\LibrarianWin.xaml.cs">
+      <DependentUpon>LibrarianWin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\MainWin.xaml.cs">
       <DependentUpon>MainWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ReaderWin.xaml.cs">
+      <DependentUpon>ReaderWin.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\StartWin.xaml.cs">
       <DependentUpon>StartWin.xaml</DependentUpon>
@@ -179,7 +185,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\LibrarianWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\MainWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ReaderWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

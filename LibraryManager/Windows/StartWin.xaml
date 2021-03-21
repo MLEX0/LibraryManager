@@ -85,7 +85,8 @@
                  VerticalContentAlignment="Center"
                  FontFamily="Tempus Sans ITC"
                  Margin="0 0 30 0"
-                 KeyDown="pswPassword_KeyDown"/>
+                 KeyDown="pswPassword_KeyDown"
+                 />
 
         <Button x:Name="btnLogin"
                 Grid.Column="0"

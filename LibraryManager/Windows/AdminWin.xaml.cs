@@ -19,9 +19,45 @@ namespace LibraryManager.Windows
     /// </summary>
     public partial class AdminWin : Window
     {
+        private DataBase.Librarian _userData;
         public AdminWin()
         {
             InitializeComponent();
+        }
+
+        public AdminWin(DataBase.Librarian User)
+        {
+            InitializeComponent();
+            _userData = User;
+        }
+
+        private void btnBooks_Click(object sender, RoutedEventArgs e)
+        {
+            MainWin mainWin = new MainWin(_userData);
+            this.Hide();
+            mainWin.ShowDialog();
+            this.Show();
+        }
+
+        private void btnClient_Click(object sender, RoutedEventArgs e)
+        {
+            ReaderWin readerWin = new ReaderWin(_userData);
+            this.Hide();
+            readerWin.ShowDialog();
+            this.Show();
+        }
+
+        private void btnLibrarian_Click(object sender, RoutedEventArgs e)
+        {
+            LibrarianWin librarianWin = new LibrarianWin(_userData);
+            this.Hide();
+            librarianWin.ShowDialog();
+            this.Show();
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

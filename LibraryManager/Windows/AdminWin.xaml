@@ -6,12 +6,59 @@
         xmlns:local="clr-namespace:LibraryManager.Windows"
         mc:Ignorable="d"
         Title="AdminWin" 
-        Height="450" 
-        Width="800"
+        Height="550" 
+        Width="820"
         WindowStartupLocation="CenterScreen"
         Background="#FF312C28">
     
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="1"
+                    Grid.RowSpan="2"
+                    Grid.Column="1">
+            
+            <Button x:Name="btnBooks"
+                    Width="250"
+                    Height="70"
+                    Margin="0 40 0 0"
+                    Content="Редактирование книг" 
+                    Click="btnBooks_Click"/>
+            
+            <Button x:Name="btnLibrarian"
+                    Width="250"
+                    Height="70"
+                    Margin="0 10 0 0"
+                    Content="Редактирование сотрудников" 
+                    Click="btnLibrarian_Click"/>
+            
+            <Button x:Name="btnClient"
+                    Width="250"
+                    Height="70"
+                    Margin="0 10 0 0"
+                    Content="Редактирование читательских билетов" 
+                    Click="btnClient_Click"/>
+
+            <Button x:Name="btnClose"
+                    Width="200"
+                    Height="70"
+                    Margin="0 40 0 0"
+                    Content="Закрыть" 
+                    Click="btnClose_Click" 
+                    />
+
+
+        </StackPanel>
+
     </Grid>
 </Window>
