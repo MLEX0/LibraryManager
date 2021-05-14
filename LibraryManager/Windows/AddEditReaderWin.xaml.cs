@@ -60,7 +60,7 @@ namespace LibraryManager.Windows
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(txtFName.Text) && txtFName.Text.Length > 50)
+                if (string.IsNullOrWhiteSpace(txtFName.Text) && txtFName.Text.Length > 50)// Проверка ввода полей
                 {
                     MessageBox.Show("Поле имя не может быть пустым", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
@@ -182,7 +182,7 @@ namespace LibraryManager.Windows
                 this.Close();
 
             }
-            catch(Exception ex)
+            catch
             {
                 MessageBox.Show("Ошибка добавления в базу данных!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }

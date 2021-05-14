@@ -13,17 +13,6 @@
           <Property Name="NameRaiting" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="MinAge" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="BibliographicDescription">
-          <Key>
-            <PropertyRef Name="IdBibloographicDescription" />
-          </Key>
-          <Property Name="IdBibloographicDescription" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ResponsibilityArea" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="PublicationArea" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="SpecificationArea" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="DistributionArea" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="PhysicalCharacteristicsArea" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
         <EntityType Name="Book">
           <Key>
             <PropertyRef Name="IdBook" />
@@ -43,7 +32,6 @@
           <Property Name="BBK" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IdBookAuthor" Type="int" Nullable="false" />
           <Property Name="Audithory" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="IdBibliographicDecsription" Type="int" />
           <Property Name="IdPublisher" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="BookAuthor">
@@ -152,6 +140,7 @@
             <PropertyRef Name="AuthorFirstName" />
             <PropertyRef Name="LibrarianLastName" />
             <PropertyRef Name="LibrarianFirstName" />
+            <PropertyRef Name="Login" />
           </Key>
           <Property Name="IdSession" Type="int" Nullable="false" />
           <Property Name="IdReader" Type="int" Nullable="false" />
@@ -170,6 +159,7 @@
           <Property Name="LibrarianLastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="LibrarianFirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="LibrarianMeddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Login" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <Association Name="FK_Book_AgeRating">
           <End Role="AgeRating" Type="Self.AgeRating" Multiplicity="1" />
@@ -180,18 +170,6 @@
             </Principal>
             <Dependent Role="Book">
               <PropertyRef Name="IdAgeReating" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Book_BibliographicDescription">
-          <End Role="BibliographicDescription" Type="Self.BibliographicDescription" Multiplicity="0..1" />
-          <End Role="Book" Type="Self.Book" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BibliographicDescription">
-              <PropertyRef Name="IdBibloographicDescription" />
-            </Principal>
-            <Dependent Role="Book">
-              <PropertyRef Name="IdBibliographicDecsription" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -324,7 +302,6 @@
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="Хранилище LibraryApplicationModelContainer">
           <EntitySet Name="AgeRating" EntityType="Self.AgeRating" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="BibliographicDescription" EntityType="Self.BibliographicDescription" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BookAuthor" EntityType="Self.BookAuthor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
@@ -353,15 +330,12 @@
     [ViewSessions].[AuthorMeddleName] AS [AuthorMeddleName], 
     [ViewSessions].[LibrarianLastName] AS [LibrarianLastName], 
     [ViewSessions].[LibrarianFirstName] AS [LibrarianFirstName], 
-    [ViewSessions].[LibrarianMeddleName] AS [LibrarianMeddleName]
+    [ViewSessions].[LibrarianMeddleName] AS [LibrarianMeddleName], 
+    [ViewSessions].[Login] AS [Login]
     FROM [dbo].[ViewSessions] AS [ViewSessions]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_Book_AgeRating" Association="Self.FK_Book_AgeRating">
             <End Role="AgeRating" EntitySet="AgeRating" />
-            <End Role="Book" EntitySet="Book" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Book_BibliographicDescription" Association="Self.FK_Book_BibliographicDescription">
-            <End Role="BibliographicDescription" EntitySet="BibliographicDescription" />
             <End Role="Book" EntitySet="Book" />
           </AssociationSet>
           <AssociationSet Name="FK_Book_BookAuthor" Association="Self.FK_Book_BookAuthor">
@@ -411,18 +385,6 @@
           <Property Name="MinAge" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Book" Relationship="Self.FK_Book_AgeRating" FromRole="AgeRating" ToRole="Book" />
         </EntityType>
-        <EntityType Name="BibliographicDescription">
-          <Key>
-            <PropertyRef Name="IdBibloographicDescription" />
-          </Key>
-          <Property Name="IdBibloographicDescription" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ResponsibilityArea" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PublicationArea" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="SpecificationArea" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DistributionArea" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PhysicalCharacteristicsArea" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Book" Relationship="Self.FK_Book_BibliographicDescription" FromRole="BibliographicDescription" ToRole="Book" />
-        </EntityType>
         <EntityType Name="Book">
           <Key>
             <PropertyRef Name="IdBook" />
@@ -442,10 +404,8 @@
           <Property Name="BBK" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IdBookAuthor" Type="Int32" Nullable="false" />
           <Property Name="Audithory" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IdBibliographicDecsription" Type="Int32" />
           <Property Name="IdPublisher" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AgeRating" Relationship="Self.FK_Book_AgeRating" FromRole="Book" ToRole="AgeRating" />
-          <NavigationProperty Name="BibliographicDescription" Relationship="Self.FK_Book_BibliographicDescription" FromRole="Book" ToRole="BibliographicDescription" />
           <NavigationProperty Name="BookAuthor" Relationship="Self.FK_Book_BookAuthor" FromRole="Book" ToRole="BookAuthor" />
           <NavigationProperty Name="Publisher" Relationship="Self.FK_Book_Publisher" FromRole="Book" ToRole="Publisher" />
           <NavigationProperty Name="Session" Relationship="Self.FK_Session_Book" FromRole="Book" ToRole="Session" />
@@ -567,6 +527,7 @@
             <PropertyRef Name="AuthorFirstName" />
             <PropertyRef Name="LibrarianLastName" />
             <PropertyRef Name="LibrarianFirstName" />
+            <PropertyRef Name="Login" />
           </Key>
           <Property Name="IdSession" Type="Int32" Nullable="false" />
           <Property Name="IdReader" Type="Int32" Nullable="false" />
@@ -585,6 +546,7 @@
           <Property Name="LibrarianLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LibrarianFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LibrarianMeddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <Association Name="FK_Book_AgeRating">
           <End Role="AgeRating" Type="Self.AgeRating" Multiplicity="1" />
@@ -595,18 +557,6 @@
             </Principal>
             <Dependent Role="Book">
               <PropertyRef Name="IdAgeReating" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Book_BibliographicDescription">
-          <End Role="BibliographicDescription" Type="Self.BibliographicDescription" Multiplicity="0..1" />
-          <End Role="Book" Type="Self.Book" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BibliographicDescription">
-              <PropertyRef Name="IdBibloographicDescription" />
-            </Principal>
-            <Dependent Role="Book">
-              <PropertyRef Name="IdBibliographicDecsription" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -708,7 +658,6 @@
         </Association>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AgeRating" EntityType="Self.AgeRating" />
-          <EntitySet Name="BibliographicDescription" EntityType="Self.BibliographicDescription" />
           <EntitySet Name="Book" EntityType="Self.Book" />
           <EntitySet Name="BookAuthor" EntityType="Self.BookAuthor" />
           <EntitySet Name="Gender" EntityType="Self.Gender" />
@@ -722,10 +671,6 @@
           <EntitySet Name="ViewSessions" EntityType="Self.ViewSessions" />
           <AssociationSet Name="FK_Book_AgeRating" Association="Self.FK_Book_AgeRating">
             <End Role="AgeRating" EntitySet="AgeRating" />
-            <End Role="Book" EntitySet="Book" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Book_BibliographicDescription" Association="Self.FK_Book_BibliographicDescription">
-            <End Role="BibliographicDescription" EntitySet="BibliographicDescription" />
             <End Role="Book" EntitySet="Book" />
           </AssociationSet>
           <AssociationSet Name="FK_Book_BookAuthor" Association="Self.FK_Book_BookAuthor">
@@ -817,18 +762,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="BibliographicDescription">
-            <EntityTypeMapping TypeName="LibraryApplicationModel.BibliographicDescription">
-              <MappingFragment StoreEntitySet="BibliographicDescription">
-                <ScalarProperty Name="IdBibloographicDescription" ColumnName="IdBibloographicDescription" />
-                <ScalarProperty Name="ResponsibilityArea" ColumnName="ResponsibilityArea" />
-                <ScalarProperty Name="PublicationArea" ColumnName="PublicationArea" />
-                <ScalarProperty Name="SpecificationArea" ColumnName="SpecificationArea" />
-                <ScalarProperty Name="DistributionArea" ColumnName="DistributionArea" />
-                <ScalarProperty Name="PhysicalCharacteristicsArea" ColumnName="PhysicalCharacteristicsArea" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Book">
             <EntityTypeMapping TypeName="LibraryApplicationModel.Book">
               <MappingFragment StoreEntitySet="Book">
@@ -847,7 +780,6 @@
                 <ScalarProperty Name="BBK" ColumnName="BBK" />
                 <ScalarProperty Name="IdBookAuthor" ColumnName="IdBookAuthor" />
                 <ScalarProperty Name="Audithory" ColumnName="Audithory" />
-                <ScalarProperty Name="IdBibliographicDecsription" ColumnName="IdBibliographicDecsription" />
                 <ScalarProperty Name="IdPublisher" ColumnName="IdPublisher" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -970,6 +902,7 @@
                 <ScalarProperty Name="LibrarianLastName" ColumnName="LibrarianLastName" />
                 <ScalarProperty Name="LibrarianFirstName" ColumnName="LibrarianFirstName" />
                 <ScalarProperty Name="LibrarianMeddleName" ColumnName="LibrarianMeddleName" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

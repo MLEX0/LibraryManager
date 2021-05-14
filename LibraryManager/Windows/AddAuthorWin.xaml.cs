@@ -78,7 +78,7 @@ namespace LibraryManager.Windows
                 MessageBox.Show($"Автор {txtAuthorFName.Text} {txtAuthorLName.Text} {txtAuthorMName.Text} добавлен");
                 this.Close();
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Show("Ошибка добавления в базу данных!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }

@@ -146,7 +146,7 @@ namespace LibraryManager.Windows
                 }
 
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Show("Ошибка добавления в базу данных!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }

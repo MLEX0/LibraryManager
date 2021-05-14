@@ -28,7 +28,6 @@ namespace LibraryManager.DataBase
         }
     
         public virtual DbSet<AgeRating> AgeRating { get; set; }
-        public virtual DbSet<BibliographicDescription> BibliographicDescription { get; set; }
         public virtual DbSet<Book> Book { get; set; }
         public virtual DbSet<BookAuthor> BookAuthor { get; set; }
         public virtual DbSet<Gender> Gender { get; set; }

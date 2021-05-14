@@ -35,11 +35,9 @@ namespace LibraryManager.DataBase
         public string BBK { get; set; }
         public int IdBookAuthor { get; set; }
         public string Audithory { get; set; }
-        public Nullable<int> IdBibliographicDecsription { get; set; }
         public int IdPublisher { get; set; }
     
         public virtual AgeRating AgeRating { get; set; }
-        public virtual BibliographicDescription BibliographicDescription { get; set; }
         public virtual BookAuthor BookAuthor { get; set; }
         public virtual Publisher Publisher { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

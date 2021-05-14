@@ -4,22 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f296027c09c948feaf601b5323fcf9a0" Name="Diagram1">
-        <EntityTypeShape EntityType="LibraryApplicationModel.AgeRating" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryApplicationModel.BibliographicDescription" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryApplicationModel.Book" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryApplicationModel.BookAuthor" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryApplicationModel.Gender" Width="1.5" PointX="0.75" PointY="20.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryApplicationModel.Librarian" Width="1.5" PointX="3" PointY="17.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryApplicationModel.PassportOfReader" Width="1.5" PointX="0.75" PointY="23" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryApplicationModel.Publisher" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryApplicationModel.Reader" Width="1.5" PointX="3" PointY="21.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryApplicationModel.Role" Width="1.5" PointX="0.75" PointY="17.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryApplicationModel.Session" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryApplicationModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryApplicationModel.ViewSessions" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="14f8603dd6da472998f1c23474ff8097" Name="Diagram1">
+        <EntityTypeShape EntityType="LibraryApplicationModel.AgeRating" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryApplicationModel.Book" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryApplicationModel.BookAuthor" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryApplicationModel.Gender" Width="1.5" PointX="0.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryApplicationModel.Librarian" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryApplicationModel.PassportOfReader" Width="1.5" PointX="0.75" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryApplicationModel.Publisher" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryApplicationModel.Reader" Width="1.5" PointX="3" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryApplicationModel.Role" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryApplicationModel.Session" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryApplicationModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryApplicationModel.ViewSessions" Width="1.5" PointX="7.75" PointY="2.375" IsExpanded="true" />
         <AssociationConnector Association="LibraryApplicationModel.FK_Book_AgeRating" ManuallyRouted="false" />
-        <AssociationConnector Association="LibraryApplicationModel.FK_Book_BibliographicDescription" ManuallyRouted="false" />
         <AssociationConnector Association="LibraryApplicationModel.FK_Book_BookAuthor" ManuallyRouted="false" />
         <AssociationConnector Association="LibraryApplicationModel.FK_Book_Publisher" ManuallyRouted="false" />
         <AssociationConnector Association="LibraryApplicationModel.FK_Session_Book" ManuallyRouted="false" />

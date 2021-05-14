@@ -31,5 +31,6 @@ namespace LibraryManager.DataBase
         public string LibrarianLastName { get; set; }
         public string LibrarianFirstName { get; set; }
         public string LibrarianMeddleName { get; set; }
+        public string Login { get; set; }
     }
 }

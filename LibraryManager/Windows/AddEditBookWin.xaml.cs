@@ -220,7 +220,6 @@ namespace LibraryManager.Windows
 
                     AddBook.IdBookAuthor = AppData.context.BookAuthor.Where(i => i.IdBookAuthor == cmbAuthor.SelectedIndex + 1).Select(i => i.IdBookAuthor).FirstOrDefault();
 
-                    AddBook.IdBibliographicDecsription = 1;
 
                     AddBook.IdAgeReating = AppData.context.AgeRating
                     .Where(i => i.NameRaiting == cmbAgeRaiting.Text)
