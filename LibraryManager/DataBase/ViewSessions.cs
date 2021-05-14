@@ -12,17 +12,24 @@ namespace LibraryManager.DataBase
     using System;
     using System.Collections.Generic;
     
-    public partial class Session
+    public partial class ViewSessions
     {
         public int IdSession { get; set; }
         public int IdReader { get; set; }
         public int IdBook { get; set; }
+        public int IdBookAuthor { get; set; }
         public System.DateTime DateOfBegin { get; set; }
         public Nullable<System.DateTime> DateOfEnd { get; set; }
         public int IdLibrarian { get; set; }
-    
-        public virtual Book Book { get; set; }
-        public virtual Librarian Librarian { get; set; }
-        public virtual Reader Reader { get; set; }
+        public string ReaderLastName { get; set; }
+        public string ReaderFirstName { get; set; }
+        public string ReaderMeddleName { get; set; }
+        public string BookName { get; set; }
+        public string AuthorLastName { get; set; }
+        public string AuthorFirstName { get; set; }
+        public string AuthorMeddleName { get; set; }
+        public string LibrarianLastName { get; set; }
+        public string LibrarianFirstName { get; set; }
+        public string LibrarianMeddleName { get; set; }
     }
 }

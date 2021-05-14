@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using LibraryManager.DataBase;
 
 namespace LibraryManager.Windows
 {
@@ -19,21 +20,19 @@ namespace LibraryManager.Windows
     /// </summary>
     public partial class AdminWin : Window
     {
-        private DataBase.Librarian _userData;
-        public AdminWin()
-        {
-            InitializeComponent();
-        }
+        private Librarian userData;
 
-        public AdminWin(DataBase.Librarian User)
+        public AdminWin(Librarian User)
         {
             InitializeComponent();
-            _userData = User;
+            userData = User;
+
+            txtWelcome.Text = $"Пользователь: {userData.LastName} {userData.FirstName} {userData.MeddleName}";
         }
 
         private void btnBooks_Click(object sender, RoutedEventArgs e)
         {
-            MainWin mainWin = new MainWin(_userData);
+            MainWin mainWin = new MainWin(userData);
             this.Hide();
             mainWin.ShowDialog();
             this.Show();
@@ -41,7 +40,7 @@ namespace LibraryManager.Windows
 
         private void btnClient_Click(object sender, RoutedEventArgs e)
         {
-            ReaderWin readerWin = new ReaderWin(_userData);
+            ReaderWin readerWin = new ReaderWin(userData);
             this.Hide();
             readerWin.ShowDialog();
             this.Show();
@@ -49,7 +48,7 @@ namespace LibraryManager.Windows
 
         private void btnLibrarian_Click(object sender, RoutedEventArgs e)
         {
-            LibrarianWin librarianWin = new LibrarianWin(_userData);
+            LibrarianWin librarianWin = new LibrarianWin(userData);
             this.Hide();
             librarianWin.ShowDialog();
             this.Show();

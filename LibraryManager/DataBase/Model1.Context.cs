@@ -30,16 +30,16 @@ namespace LibraryManager.DataBase
         public virtual DbSet<AgeRating> AgeRating { get; set; }
         public virtual DbSet<BibliographicDescription> BibliographicDescription { get; set; }
         public virtual DbSet<Book> Book { get; set; }
-        public virtual DbSet<Book_BookAuthor> Book_BookAuthor { get; set; }
         public virtual DbSet<BookAuthor> BookAuthor { get; set; }
+        public virtual DbSet<Gender> Gender { get; set; }
         public virtual DbSet<Librarian> Librarian { get; set; }
-        public virtual DbSet<Librarian_Session> Librarian_Session { get; set; }
         public virtual DbSet<PassportOfReader> PassportOfReader { get; set; }
+        public virtual DbSet<Publisher> Publisher { get; set; }
         public virtual DbSet<Reader> Reader { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Session> Session { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<TypeOperation> TypeOperation { get; set; }
+        public virtual DbSet<ViewSessions> ViewSessions { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

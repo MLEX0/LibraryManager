@@ -68,10 +68,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="HelpClass\AppData.cs" />
     <Compile Include="DataBase\AgeRating.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataBase\AuthorFIO.cs" />
     <Compile Include="DataBase\BibliographicDescription.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -81,15 +81,13 @@
     <Compile Include="DataBase\BookAuthor.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataBase\Book_BookAuthor.cs">
+    <Compile Include="DataBase\Gender.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="DataBase\Librarian.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataBase\Librarian_Session.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
+    <Compile Include="DataBase\LibrarianFIO.cs" />
     <Compile Include="DataBase\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -108,9 +106,13 @@
     <Compile Include="DataBase\PassportOfReader.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataBase\Publisher.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataBase\Reader.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataBase\ReaderFIO.cs" />
     <Compile Include="DataBase\Role.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -126,10 +128,31 @@
     <Compile Include="DataBase\sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataBase\TypeOperation.cs">
+    <Compile Include="DataBase\ViewSessions.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="HelpClass\DataUser.cs" />
+    <Compile Include="HelpClass\AppData.cs" />
+    <Compile Include="HelpClass\CapchaGenClass.cs" />
+    <Compile Include="HelpClass\HelpData.cs" />
+    <Compile Include="HelpClass\FileSaveClass.cs" />
+    <Compile Include="Windows\AddAuthorWin.xaml.cs">
+      <DependentUpon>AddAuthorWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddEditBookWin.xaml.cs">
+      <DependentUpon>AddEditBookWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddEditLibrarian.xaml.cs">
+      <DependentUpon>AddEditLibrarian.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddEditReaderWin.xaml.cs">
+      <DependentUpon>AddEditReaderWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddEditSession.xaml.cs">
+      <DependentUpon>AddEditSession.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddPublisherWin.xaml.cs">
+      <DependentUpon>AddPublisherWin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\AdminWin.xaml.cs">
       <DependentUpon>AdminWin.xaml</DependentUpon>
     </Compile>
@@ -138,6 +161,9 @@
     </Compile>
     <Compile Include="Windows\MainWin.xaml.cs">
       <DependentUpon>MainWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ReaderSessionsWin.xaml.cs">
+      <DependentUpon>ReaderSessionsWin.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ReaderWin.xaml.cs">
       <DependentUpon>ReaderWin.xaml</DependentUpon>
@@ -181,6 +207,30 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Windows\AddAuthorWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddEditBookWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddEditLibrarian.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddEditReaderWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddEditSession.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddPublisherWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\AdminWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -190,6 +240,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\MainWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ReaderSessionsWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -203,6 +257,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
     <Content Include="DataBase\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -213,12 +271,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Windows\Images\" />
+    <Resource Include="Windows\Images\nullImage.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,15 +12,19 @@ namespace LibraryManager.DataBase
     using System;
     using System.Collections.Generic;
     
-    public partial class Librarian_Session
+    public partial class Publisher
     {
-        public int IdLibrarionSessiom { get; set; }
-        public int IdSession { get; set; }
-        public int IdLibrarian { get; set; }
-        public int IdTypeOperation { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Publisher()
+        {
+            this.Book = new HashSet<Book>();
+        }
     
-        public virtual Librarian Librarian { get; set; }
-        public virtual Session Session { get; set; }
-        public virtual TypeOperation TypeOperation { get; set; }
+        public int IdPublisher { get; set; }
+        public string PublisherName { get; set; }
+        public string CityName { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Book> Book { get; set; }
     }
 }

@@ -17,12 +17,12 @@
           <Key>
             <PropertyRef Name="IdBibloographicDescription" />
           </Key>
-          <Property Name="IdBibloographicDescription" Type="int" Nullable="false" />
-          <Property Name="ResponsibilityArea" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="PublicationArea" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="SpecificationArea" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="DistributionArea" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="PhysicalCharacteristicsArea" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdBibloographicDescription" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ResponsibilityArea" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PublicationArea" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SpecificationArea" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DistributionArea" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PhysicalCharacteristicsArea" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Book">
           <Key>
@@ -30,26 +30,21 @@
           </Key>
           <Property Name="IdBook" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BookName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="BookDescription" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="BookDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateOfIssue" Type="date" Nullable="false" />
+          <Property Name="DateOfReceipt" Type="datetime" Nullable="false" />
           <Property Name="BookImage" Type="varbinary(max)" />
           <Property Name="IdAgeReating" Type="int" Nullable="false" />
           <Property Name="PlaceNumber" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="CountBooksInLibrary" Type="int" Nullable="false" />
           <Property Name="CountBooksInUse" Type="int" Nullable="false" />
-          <Property Name="ISBN" Type="int" Nullable="false" />
-          <Property Name="UDK" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="BBK" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="ISBN" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UDK" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BBK" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IdBookAuthor" Type="int" Nullable="false" />
           <Property Name="Audithory" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="IdBibliographicDecsription" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Book/BookAuthor">
-          <Key>
-            <PropertyRef Name="IdBook/BookAuthor" />
-          </Key>
-          <Property Name="IdBook/BookAuthor" Type="int" Nullable="false" />
-          <Property Name="IdBookAuthor" Type="int" Nullable="false" />
-          <Property Name="IdBook" Type="int" Nullable="false" />
+          <Property Name="IdBibliographicDecsription" Type="int" />
+          <Property Name="IdPublisher" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="BookAuthor">
           <Key>
@@ -59,34 +54,32 @@
           <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="MeddleName" Type="nvarchar" MaxLength="50" />
-          <Property Name="AuthorSighn" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="AuthorSighn" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="IdGender" />
+          </Key>
+          <Property Name="IdGender" Type="int" Nullable="false" />
+          <Property Name="GenderName" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="Librarian">
           <Key>
             <PropertyRef Name="IdLibrarian" />
           </Key>
-          <Property Name="IdLibrarian" Type="int" Nullable="false" />
+          <Property Name="IdLibrarian" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="MeddleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MeddleName" Type="nvarchar" MaxLength="50" />
           <Property Name="IdRole" Type="int" Nullable="false" />
           <Property Name="Login" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Librarian/Session">
-          <Key>
-            <PropertyRef Name="IdLibrarionSessiom" />
-          </Key>
-          <Property Name="IdLibrarionSessiom" Type="int" Nullable="false" />
-          <Property Name="IdSession" Type="int" Nullable="false" />
-          <Property Name="IdLibrarian" Type="int" Nullable="false" />
-          <Property Name="IdTypeOperation" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PassportOfReader">
           <Key>
             <PropertyRef Name="IdPassport" />
           </Key>
-          <Property Name="IdPassport" Type="int" Nullable="false" />
+          <Property Name="IdPassport" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Series" Type="int" Nullable="false" />
           <Property Name="Number" Type="int" Nullable="false" />
           <Property Name="PlaceOfIssue" Type="nvarchar" MaxLength="500" Nullable="false" />
@@ -94,17 +87,25 @@
           <Property Name="DepartmentСode" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="PlaceOfBirth" Type="nvarchar" MaxLength="200" Nullable="false" />
         </EntityType>
+        <EntityType Name="Publisher">
+          <Key>
+            <PropertyRef Name="IdPublisher" />
+          </Key>
+          <Property Name="IdPublisher" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PublisherName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
         <EntityType Name="Reader">
           <Key>
             <PropertyRef Name="IdReader" />
           </Key>
-          <Property Name="IdReader" Type="int" Nullable="false" />
+          <Property Name="IdReader" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="MeddleName" Type="nvarchar" MaxLength="50" />
           <Property Name="IdPassport" Type="int" Nullable="false" />
           <Property Name="Birthday" Type="datetime" Nullable="false" />
-          <Property Name="Gender" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="IdGender" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -117,11 +118,11 @@
           <Key>
             <PropertyRef Name="IdSession" />
           </Key>
-          <Property Name="IdSession" Type="int" Nullable="false" />
+          <Property Name="IdSession" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdReader" Type="int" Nullable="false" />
           <Property Name="IdBook" Type="int" Nullable="false" />
           <Property Name="DateOfBegin" Type="datetime" Nullable="false" />
-          <Property Name="DateOfEnd" Type="datetime" Nullable="false" />
+          <Property Name="DateOfEnd" Type="datetime" />
           <Property Name="IdLibrarian" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -134,37 +135,42 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="TypeOperation">
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "LibraryApplication.dbo.ViewSessions" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="ViewSessions">
           <Key>
-            <PropertyRef Name="IdTypeOperation" />
+            <PropertyRef Name="IdSession" />
+            <PropertyRef Name="IdReader" />
+            <PropertyRef Name="IdBook" />
+            <PropertyRef Name="IdBookAuthor" />
+            <PropertyRef Name="DateOfBegin" />
+            <PropertyRef Name="IdLibrarian" />
+            <PropertyRef Name="ReaderLastName" />
+            <PropertyRef Name="ReaderFirstName" />
+            <PropertyRef Name="BookName" />
+            <PropertyRef Name="AuthorLastName" />
+            <PropertyRef Name="AuthorFirstName" />
+            <PropertyRef Name="LibrarianLastName" />
+            <PropertyRef Name="LibrarianFirstName" />
           </Key>
-          <Property Name="IdTypeOperation" Type="int" Nullable="false" />
-          <Property Name="NameOperation" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdSession" Type="int" Nullable="false" />
+          <Property Name="IdReader" Type="int" Nullable="false" />
+          <Property Name="IdBook" Type="int" Nullable="false" />
+          <Property Name="IdBookAuthor" Type="int" Nullable="false" />
+          <Property Name="DateOfBegin" Type="datetime" Nullable="false" />
+          <Property Name="DateOfEnd" Type="datetime" />
+          <Property Name="IdLibrarian" Type="int" Nullable="false" />
+          <Property Name="ReaderLastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReaderFirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReaderMeddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="BookName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="AuthorLastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AuthorFirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AuthorMeddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LibrarianLastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LibrarianFirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LibrarianMeddleName" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK_Book/BookAuthor_Book">
-          <End Role="Book" Type="Self.Book" Multiplicity="1" />
-          <End Role="Book/BookAuthor" Type="Self.Book/BookAuthor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Book">
-              <PropertyRef Name="IdBook" />
-            </Principal>
-            <Dependent Role="Book/BookAuthor">
-              <PropertyRef Name="IdBook" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Book/BookAuthor_BookAuthor">
-          <End Role="BookAuthor" Type="Self.BookAuthor" Multiplicity="1" />
-          <End Role="Book/BookAuthor" Type="Self.Book/BookAuthor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BookAuthor">
-              <PropertyRef Name="IdBookAuthor" />
-            </Principal>
-            <Dependent Role="Book/BookAuthor">
-              <PropertyRef Name="IdBookAuthor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Book_AgeRating">
           <End Role="AgeRating" Type="Self.AgeRating" Multiplicity="1" />
           <End Role="Book" Type="Self.Book" Multiplicity="*" />
@@ -178,7 +184,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Book_BibliographicDescription">
-          <End Role="BibliographicDescription" Type="Self.BibliographicDescription" Multiplicity="1" />
+          <End Role="BibliographicDescription" Type="Self.BibliographicDescription" Multiplicity="0..1" />
           <End Role="Book" Type="Self.Book" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BibliographicDescription">
@@ -189,39 +195,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Librarian/Session_Librarian">
-          <End Role="Librarian" Type="Self.Librarian" Multiplicity="1" />
-          <End Role="Librarian/Session" Type="Self.Librarian/Session" Multiplicity="*" />
+        <Association Name="FK_Book_BookAuthor">
+          <End Role="BookAuthor" Type="Self.BookAuthor" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Librarian">
-              <PropertyRef Name="IdLibrarian" />
+            <Principal Role="BookAuthor">
+              <PropertyRef Name="IdBookAuthor" />
             </Principal>
-            <Dependent Role="Librarian/Session">
-              <PropertyRef Name="IdLibrarian" />
+            <Dependent Role="Book">
+              <PropertyRef Name="IdBookAuthor" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Librarian/Session_Session">
-          <End Role="Session" Type="Self.Session" Multiplicity="1" />
-          <End Role="Librarian/Session" Type="Self.Librarian/Session" Multiplicity="*" />
+        <Association Name="FK_Book_Publisher">
+          <End Role="Publisher" Type="Self.Publisher" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Session">
-              <PropertyRef Name="IdSession" />
+            <Principal Role="Publisher">
+              <PropertyRef Name="IdPublisher" />
             </Principal>
-            <Dependent Role="Librarian/Session">
-              <PropertyRef Name="IdSession" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Librarian/Session_TypeOperation">
-          <End Role="TypeOperation" Type="Self.TypeOperation" Multiplicity="1" />
-          <End Role="Librarian/Session" Type="Self.Librarian/Session" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TypeOperation">
-              <PropertyRef Name="IdTypeOperation" />
-            </Principal>
-            <Dependent Role="Librarian/Session">
-              <PropertyRef Name="IdTypeOperation" />
+            <Dependent Role="Book">
+              <PropertyRef Name="IdPublisher" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -237,7 +231,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Reader_PassportOfReader">
+        <Association Name="FK_Reader_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Reader" Type="Self.Reader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="IdGender" />
+            </Principal>
+            <Dependent Role="Reader">
+              <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reader_PassportOfReader1">
           <End Role="PassportOfReader" Type="Self.PassportOfReader" Multiplicity="1" />
           <End Role="Reader" Type="Self.Reader" Multiplicity="*" />
           <ReferentialConstraint>
@@ -258,6 +264,18 @@
             </Principal>
             <Dependent Role="Session">
               <PropertyRef Name="IdBook" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Session_Librarian">
+          <End Role="Librarian" Type="Self.Librarian" Multiplicity="1" />
+          <End Role="Session" Type="Self.Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Librarian">
+              <PropertyRef Name="IdLibrarian" />
+            </Principal>
+            <Dependent Role="Session">
+              <PropertyRef Name="IdLibrarian" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -308,24 +326,36 @@
           <EntitySet Name="AgeRating" EntityType="Self.AgeRating" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BibliographicDescription" EntityType="Self.BibliographicDescription" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Book/BookAuthor" EntityType="Self.Book/BookAuthor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BookAuthor" EntityType="Self.BookAuthor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Librarian" EntityType="Self.Librarian" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Librarian/Session" EntityType="Self.Librarian/Session" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PassportOfReader" EntityType="Self.PassportOfReader" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Publisher" EntityType="Self.Publisher" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reader" EntityType="Self.Reader" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Session" EntityType="Self.Session" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TypeOperation" EntityType="Self.TypeOperation" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Book/BookAuthor_Book" Association="Self.FK_Book/BookAuthor_Book">
-            <End Role="Book" EntitySet="Book" />
-            <End Role="Book/BookAuthor" EntitySet="Book/BookAuthor" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Book/BookAuthor_BookAuthor" Association="Self.FK_Book/BookAuthor_BookAuthor">
-            <End Role="BookAuthor" EntitySet="BookAuthor" />
-            <End Role="Book/BookAuthor" EntitySet="Book/BookAuthor" />
-          </AssociationSet>
+          <EntitySet Name="ViewSessions" EntityType="Self.ViewSessions" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ViewSessions].[IdSession] AS [IdSession], 
+    [ViewSessions].[IdReader] AS [IdReader], 
+    [ViewSessions].[IdBook] AS [IdBook], 
+    [ViewSessions].[IdBookAuthor] AS [IdBookAuthor], 
+    [ViewSessions].[DateOfBegin] AS [DateOfBegin], 
+    [ViewSessions].[DateOfEnd] AS [DateOfEnd], 
+    [ViewSessions].[IdLibrarian] AS [IdLibrarian], 
+    [ViewSessions].[ReaderLastName] AS [ReaderLastName], 
+    [ViewSessions].[ReaderFirstName] AS [ReaderFirstName], 
+    [ViewSessions].[ReaderMeddleName] AS [ReaderMeddleName], 
+    [ViewSessions].[BookName] AS [BookName], 
+    [ViewSessions].[AuthorLastName] AS [AuthorLastName], 
+    [ViewSessions].[AuthorFirstName] AS [AuthorFirstName], 
+    [ViewSessions].[AuthorMeddleName] AS [AuthorMeddleName], 
+    [ViewSessions].[LibrarianLastName] AS [LibrarianLastName], 
+    [ViewSessions].[LibrarianFirstName] AS [LibrarianFirstName], 
+    [ViewSessions].[LibrarianMeddleName] AS [LibrarianMeddleName]
+    FROM [dbo].[ViewSessions] AS [ViewSessions]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Book_AgeRating" Association="Self.FK_Book_AgeRating">
             <End Role="AgeRating" EntitySet="AgeRating" />
             <End Role="Book" EntitySet="Book" />
@@ -334,28 +364,32 @@
             <End Role="BibliographicDescription" EntitySet="BibliographicDescription" />
             <End Role="Book" EntitySet="Book" />
           </AssociationSet>
-          <AssociationSet Name="FK_Librarian/Session_Librarian" Association="Self.FK_Librarian/Session_Librarian">
-            <End Role="Librarian" EntitySet="Librarian" />
-            <End Role="Librarian/Session" EntitySet="Librarian/Session" />
+          <AssociationSet Name="FK_Book_BookAuthor" Association="Self.FK_Book_BookAuthor">
+            <End Role="BookAuthor" EntitySet="BookAuthor" />
+            <End Role="Book" EntitySet="Book" />
           </AssociationSet>
-          <AssociationSet Name="FK_Librarian/Session_Session" Association="Self.FK_Librarian/Session_Session">
-            <End Role="Session" EntitySet="Session" />
-            <End Role="Librarian/Session" EntitySet="Librarian/Session" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Librarian/Session_TypeOperation" Association="Self.FK_Librarian/Session_TypeOperation">
-            <End Role="TypeOperation" EntitySet="TypeOperation" />
-            <End Role="Librarian/Session" EntitySet="Librarian/Session" />
+          <AssociationSet Name="FK_Book_Publisher" Association="Self.FK_Book_Publisher">
+            <End Role="Publisher" EntitySet="Publisher" />
+            <End Role="Book" EntitySet="Book" />
           </AssociationSet>
           <AssociationSet Name="FK_Librarian_Role" Association="Self.FK_Librarian_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="Librarian" EntitySet="Librarian" />
           </AssociationSet>
-          <AssociationSet Name="FK_Reader_PassportOfReader" Association="Self.FK_Reader_PassportOfReader">
+          <AssociationSet Name="FK_Reader_Gender" Association="Self.FK_Reader_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Reader" EntitySet="Reader" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reader_PassportOfReader1" Association="Self.FK_Reader_PassportOfReader1">
             <End Role="PassportOfReader" EntitySet="PassportOfReader" />
             <End Role="Reader" EntitySet="Reader" />
           </AssociationSet>
           <AssociationSet Name="FK_Session_Book" Association="Self.FK_Session_Book">
             <End Role="Book" EntitySet="Book" />
+            <End Role="Session" EntitySet="Session" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Session_Librarian" Association="Self.FK_Session_Librarian">
+            <End Role="Librarian" EntitySet="Librarian" />
             <End Role="Session" EntitySet="Session" />
           </AssociationSet>
           <AssociationSet Name="FK_Session_Reader" Association="Self.FK_Session_Reader">
@@ -381,12 +415,12 @@
           <Key>
             <PropertyRef Name="IdBibloographicDescription" />
           </Key>
-          <Property Name="IdBibloographicDescription" Type="Int32" Nullable="false" />
-          <Property Name="ResponsibilityArea" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PublicationArea" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="SpecificationArea" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DistributionArea" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PhysicalCharacteristicsArea" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdBibloographicDescription" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ResponsibilityArea" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PublicationArea" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SpecificationArea" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DistributionArea" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhysicalCharacteristicsArea" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Book" Relationship="Self.FK_Book_BibliographicDescription" FromRole="BibliographicDescription" ToRole="Book" />
         </EntityType>
         <EntityType Name="Book">
@@ -395,32 +429,26 @@
           </Key>
           <Property Name="IdBook" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="BookName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="BookDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BookDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateOfIssue" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateOfReceipt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="BookImage" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="IdAgeReating" Type="Int32" Nullable="false" />
           <Property Name="PlaceNumber" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CountBooksInLibrary" Type="Int32" Nullable="false" />
           <Property Name="CountBooksInUse" Type="Int32" Nullable="false" />
-          <Property Name="ISBN" Type="Int32" Nullable="false" />
-          <Property Name="UDK" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="BBK" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ISBN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UDK" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BBK" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IdBookAuthor" Type="Int32" Nullable="false" />
           <Property Name="Audithory" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IdBibliographicDecsription" Type="Int32" Nullable="false" />
+          <Property Name="IdBibliographicDecsription" Type="Int32" />
+          <Property Name="IdPublisher" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AgeRating" Relationship="Self.FK_Book_AgeRating" FromRole="Book" ToRole="AgeRating" />
           <NavigationProperty Name="BibliographicDescription" Relationship="Self.FK_Book_BibliographicDescription" FromRole="Book" ToRole="BibliographicDescription" />
-          <NavigationProperty Name="Book_BookAuthor" Relationship="Self.FK_Book_BookAuthor_Book" FromRole="Book" ToRole="Book_BookAuthor" />
+          <NavigationProperty Name="BookAuthor" Relationship="Self.FK_Book_BookAuthor" FromRole="Book" ToRole="BookAuthor" />
+          <NavigationProperty Name="Publisher" Relationship="Self.FK_Book_Publisher" FromRole="Book" ToRole="Publisher" />
           <NavigationProperty Name="Session" Relationship="Self.FK_Session_Book" FromRole="Book" ToRole="Session" />
-        </EntityType>
-        <EntityType Name="Book_BookAuthor">
-          <Key>
-            <PropertyRef Name="IdBook_BookAuthor" />
-          </Key>
-          <Property Name="IdBook_BookAuthor" Type="Int32" Nullable="false" />
-          <Property Name="IdBookAuthor" Type="Int32" Nullable="false" />
-          <Property Name="IdBook" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Book" Relationship="Self.FK_Book_BookAuthor_Book" FromRole="Book_BookAuthor" ToRole="Book" />
-          <NavigationProperty Name="BookAuthor" Relationship="Self.FK_Book_BookAuthor_BookAuthor" FromRole="Book_BookAuthor" ToRole="BookAuthor" />
         </EntityType>
         <EntityType Name="BookAuthor">
           <Key>
@@ -430,60 +458,66 @@
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MeddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AuthorSighn" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Book_BookAuthor" Relationship="Self.FK_Book_BookAuthor_BookAuthor" FromRole="BookAuthor" ToRole="Book_BookAuthor" />
+          <Property Name="AuthorSighn" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Book" Relationship="Self.FK_Book_BookAuthor" FromRole="BookAuthor" ToRole="Book" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="IdGender" />
+          </Key>
+          <Property Name="IdGender" Type="Int32" Nullable="false" />
+          <Property Name="GenderName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Reader" Relationship="Self.FK_Reader_Gender" FromRole="Gender" ToRole="Reader" />
         </EntityType>
         <EntityType Name="Librarian">
           <Key>
             <PropertyRef Name="IdLibrarian" />
           </Key>
-          <Property Name="IdLibrarian" Type="Int32" Nullable="false" />
+          <Property Name="IdLibrarian" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="MeddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MeddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IdRole" Type="Int32" Nullable="false" />
           <Property Name="Login" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Librarian_Session" Relationship="Self.FK_Librarian_Session_Librarian" FromRole="Librarian" ToRole="Librarian_Session" />
           <NavigationProperty Name="Role" Relationship="Self.FK_Librarian_Role" FromRole="Librarian" ToRole="Role" />
-        </EntityType>
-        <EntityType Name="Librarian_Session">
-          <Key>
-            <PropertyRef Name="IdLibrarionSessiom" />
-          </Key>
-          <Property Name="IdLibrarionSessiom" Type="Int32" Nullable="false" />
-          <Property Name="IdSession" Type="Int32" Nullable="false" />
-          <Property Name="IdLibrarian" Type="Int32" Nullable="false" />
-          <Property Name="IdTypeOperation" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Librarian" Relationship="Self.FK_Librarian_Session_Librarian" FromRole="Librarian_Session" ToRole="Librarian" />
-          <NavigationProperty Name="Session" Relationship="Self.FK_Librarian_Session_Session" FromRole="Librarian_Session" ToRole="Session" />
-          <NavigationProperty Name="TypeOperation" Relationship="Self.FK_Librarian_Session_TypeOperation" FromRole="Librarian_Session" ToRole="TypeOperation" />
+          <NavigationProperty Name="Session" Relationship="Self.FK_Session_Librarian" FromRole="Librarian" ToRole="Session" />
         </EntityType>
         <EntityType Name="PassportOfReader">
           <Key>
             <PropertyRef Name="IdPassport" />
           </Key>
-          <Property Name="IdPassport" Type="Int32" Nullable="false" />
+          <Property Name="IdPassport" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Series" Type="Int32" Nullable="false" />
           <Property Name="Number" Type="Int32" Nullable="false" />
           <Property Name="PlaceOfIssue" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DataOfIssue" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DepartmentСode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PlaceOfBirth" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Reader" Relationship="Self.FK_Reader_PassportOfReader" FromRole="PassportOfReader" ToRole="Reader" />
+          <NavigationProperty Name="Reader" Relationship="Self.FK_Reader_PassportOfReader1" FromRole="PassportOfReader" ToRole="Reader" />
+        </EntityType>
+        <EntityType Name="Publisher">
+          <Key>
+            <PropertyRef Name="IdPublisher" />
+          </Key>
+          <Property Name="IdPublisher" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PublisherName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CityName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Book" Relationship="Self.FK_Book_Publisher" FromRole="Publisher" ToRole="Book" />
         </EntityType>
         <EntityType Name="Reader">
           <Key>
             <PropertyRef Name="IdReader" />
           </Key>
-          <Property Name="IdReader" Type="Int32" Nullable="false" />
+          <Property Name="IdReader" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MeddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IdPassport" Type="Int32" Nullable="false" />
           <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="PassportOfReader" Relationship="Self.FK_Reader_PassportOfReader" FromRole="Reader" ToRole="PassportOfReader" />
+          <Property Name="IdGender" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_Reader_Gender" FromRole="Reader" ToRole="Gender" />
+          <NavigationProperty Name="PassportOfReader" Relationship="Self.FK_Reader_PassportOfReader1" FromRole="Reader" ToRole="PassportOfReader" />
           <NavigationProperty Name="Session" Relationship="Self.FK_Session_Reader" FromRole="Reader" ToRole="Session" />
         </EntityType>
         <EntityType Name="Role">
@@ -498,14 +532,14 @@
           <Key>
             <PropertyRef Name="IdSession" />
           </Key>
-          <Property Name="IdSession" Type="Int32" Nullable="false" />
+          <Property Name="IdSession" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdReader" Type="Int32" Nullable="false" />
           <Property Name="IdBook" Type="Int32" Nullable="false" />
           <Property Name="DateOfBegin" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DateOfEnd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateOfEnd" Type="DateTime" Precision="3" />
           <Property Name="IdLibrarian" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Book" Relationship="Self.FK_Session_Book" FromRole="Session" ToRole="Book" />
-          <NavigationProperty Name="Librarian_Session" Relationship="Self.FK_Librarian_Session_Session" FromRole="Session" ToRole="Librarian_Session" />
+          <NavigationProperty Name="Librarian" Relationship="Self.FK_Session_Librarian" FromRole="Session" ToRole="Librarian" />
           <NavigationProperty Name="Reader" Relationship="Self.FK_Session_Reader" FromRole="Session" ToRole="Reader" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -518,13 +552,39 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="TypeOperation">
+        <EntityType Name="ViewSessions">
           <Key>
-            <PropertyRef Name="IdTypeOperation" />
+            <PropertyRef Name="IdSession" />
+            <PropertyRef Name="IdReader" />
+            <PropertyRef Name="IdBook" />
+            <PropertyRef Name="IdBookAuthor" />
+            <PropertyRef Name="DateOfBegin" />
+            <PropertyRef Name="IdLibrarian" />
+            <PropertyRef Name="ReaderLastName" />
+            <PropertyRef Name="ReaderFirstName" />
+            <PropertyRef Name="BookName" />
+            <PropertyRef Name="AuthorLastName" />
+            <PropertyRef Name="AuthorFirstName" />
+            <PropertyRef Name="LibrarianLastName" />
+            <PropertyRef Name="LibrarianFirstName" />
           </Key>
-          <Property Name="IdTypeOperation" Type="Int32" Nullable="false" />
-          <Property Name="NameOperation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Librarian_Session" Relationship="Self.FK_Librarian_Session_TypeOperation" FromRole="TypeOperation" ToRole="Librarian_Session" />
+          <Property Name="IdSession" Type="Int32" Nullable="false" />
+          <Property Name="IdReader" Type="Int32" Nullable="false" />
+          <Property Name="IdBook" Type="Int32" Nullable="false" />
+          <Property Name="IdBookAuthor" Type="Int32" Nullable="false" />
+          <Property Name="DateOfBegin" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateOfEnd" Type="DateTime" Precision="3" />
+          <Property Name="IdLibrarian" Type="Int32" Nullable="false" />
+          <Property Name="ReaderLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReaderFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReaderMeddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BookName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AuthorLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AuthorFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AuthorMeddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LibrarianLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LibrarianFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LibrarianMeddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Book_AgeRating">
           <End Role="AgeRating" Type="Self.AgeRating" Multiplicity="1" />
@@ -539,7 +599,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Book_BibliographicDescription">
-          <End Role="BibliographicDescription" Type="Self.BibliographicDescription" Multiplicity="1" />
+          <End Role="BibliographicDescription" Type="Self.BibliographicDescription" Multiplicity="0..1" />
           <End Role="Book" Type="Self.Book" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BibliographicDescription">
@@ -550,15 +610,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Book_BookAuthor_Book">
-          <End Role="Book" Type="Self.Book" Multiplicity="1" />
-          <End Role="Book_BookAuthor" Type="Self.Book_BookAuthor" Multiplicity="*" />
+        <Association Name="FK_Book_BookAuthor">
+          <End Role="BookAuthor" Type="Self.BookAuthor" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Book">
-              <PropertyRef Name="IdBook" />
+            <Principal Role="BookAuthor">
+              <PropertyRef Name="IdBookAuthor" />
             </Principal>
-            <Dependent Role="Book_BookAuthor">
-              <PropertyRef Name="IdBook" />
+            <Dependent Role="Book">
+              <PropertyRef Name="IdBookAuthor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Book_Publisher">
+          <End Role="Publisher" Type="Self.Publisher" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publisher">
+              <PropertyRef Name="IdPublisher" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="IdPublisher" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -574,27 +646,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Book_BookAuthor_BookAuthor">
-          <End Role="BookAuthor" Type="Self.BookAuthor" Multiplicity="1" />
-          <End Role="Book_BookAuthor" Type="Self.Book_BookAuthor" Multiplicity="*" />
+        <Association Name="FK_Reader_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Reader" Type="Self.Reader" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="BookAuthor">
-              <PropertyRef Name="IdBookAuthor" />
+            <Principal Role="Gender">
+              <PropertyRef Name="IdGender" />
             </Principal>
-            <Dependent Role="Book_BookAuthor">
-              <PropertyRef Name="IdBookAuthor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Librarian_Session_Librarian">
-          <End Role="Librarian" Type="Self.Librarian" Multiplicity="1" />
-          <End Role="Librarian_Session" Type="Self.Librarian_Session" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Librarian">
-              <PropertyRef Name="IdLibrarian" />
-            </Principal>
-            <Dependent Role="Librarian_Session">
-              <PropertyRef Name="IdLibrarian" />
+            <Dependent Role="Reader">
+              <PropertyRef Name="IdGender" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -610,31 +670,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Librarian_Session_Session">
-          <End Role="Session" Type="Self.Session" Multiplicity="1" />
-          <End Role="Librarian_Session" Type="Self.Librarian_Session" Multiplicity="*" />
+        <Association Name="FK_Session_Librarian">
+          <End Role="Librarian" Type="Self.Librarian" Multiplicity="1" />
+          <End Role="Session" Type="Self.Session" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Session">
-              <PropertyRef Name="IdSession" />
+            <Principal Role="Librarian">
+              <PropertyRef Name="IdLibrarian" />
             </Principal>
-            <Dependent Role="Librarian_Session">
-              <PropertyRef Name="IdSession" />
+            <Dependent Role="Session">
+              <PropertyRef Name="IdLibrarian" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Librarian_Session_TypeOperation">
-          <End Role="TypeOperation" Type="Self.TypeOperation" Multiplicity="1" />
-          <End Role="Librarian_Session" Type="Self.Librarian_Session" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TypeOperation">
-              <PropertyRef Name="IdTypeOperation" />
-            </Principal>
-            <Dependent Role="Librarian_Session">
-              <PropertyRef Name="IdTypeOperation" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Reader_PassportOfReader">
+        <Association Name="FK_Reader_PassportOfReader1">
           <End Role="PassportOfReader" Type="Self.PassportOfReader" Multiplicity="1" />
           <End Role="Reader" Type="Self.Reader" Multiplicity="*" />
           <ReferentialConstraint>
@@ -662,16 +710,16 @@
           <EntitySet Name="AgeRating" EntityType="Self.AgeRating" />
           <EntitySet Name="BibliographicDescription" EntityType="Self.BibliographicDescription" />
           <EntitySet Name="Book" EntityType="Self.Book" />
-          <EntitySet Name="Book_BookAuthor" EntityType="Self.Book_BookAuthor" />
           <EntitySet Name="BookAuthor" EntityType="Self.BookAuthor" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" />
           <EntitySet Name="Librarian" EntityType="Self.Librarian" />
-          <EntitySet Name="Librarian_Session" EntityType="Self.Librarian_Session" />
           <EntitySet Name="PassportOfReader" EntityType="Self.PassportOfReader" />
+          <EntitySet Name="Publisher" EntityType="Self.Publisher" />
           <EntitySet Name="Reader" EntityType="Self.Reader" />
           <EntitySet Name="Role" EntityType="Self.Role" />
           <EntitySet Name="Session" EntityType="Self.Session" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="TypeOperation" EntityType="Self.TypeOperation" />
+          <EntitySet Name="ViewSessions" EntityType="Self.ViewSessions" />
           <AssociationSet Name="FK_Book_AgeRating" Association="Self.FK_Book_AgeRating">
             <End Role="AgeRating" EntitySet="AgeRating" />
             <End Role="Book" EntitySet="Book" />
@@ -680,35 +728,31 @@
             <End Role="BibliographicDescription" EntitySet="BibliographicDescription" />
             <End Role="Book" EntitySet="Book" />
           </AssociationSet>
-          <AssociationSet Name="FK_Book_BookAuthor_Book" Association="Self.FK_Book_BookAuthor_Book">
+          <AssociationSet Name="FK_Book_BookAuthor" Association="Self.FK_Book_BookAuthor">
+            <End Role="BookAuthor" EntitySet="BookAuthor" />
             <End Role="Book" EntitySet="Book" />
-            <End Role="Book_BookAuthor" EntitySet="Book_BookAuthor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Book_Publisher" Association="Self.FK_Book_Publisher">
+            <End Role="Publisher" EntitySet="Publisher" />
+            <End Role="Book" EntitySet="Book" />
           </AssociationSet>
           <AssociationSet Name="FK_Session_Book" Association="Self.FK_Session_Book">
             <End Role="Book" EntitySet="Book" />
             <End Role="Session" EntitySet="Session" />
           </AssociationSet>
-          <AssociationSet Name="FK_Book_BookAuthor_BookAuthor" Association="Self.FK_Book_BookAuthor_BookAuthor">
-            <End Role="BookAuthor" EntitySet="BookAuthor" />
-            <End Role="Book_BookAuthor" EntitySet="Book_BookAuthor" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Librarian_Session_Librarian" Association="Self.FK_Librarian_Session_Librarian">
-            <End Role="Librarian" EntitySet="Librarian" />
-            <End Role="Librarian_Session" EntitySet="Librarian_Session" />
+          <AssociationSet Name="FK_Reader_Gender" Association="Self.FK_Reader_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Reader" EntitySet="Reader" />
           </AssociationSet>
           <AssociationSet Name="FK_Librarian_Role" Association="Self.FK_Librarian_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="Librarian" EntitySet="Librarian" />
           </AssociationSet>
-          <AssociationSet Name="FK_Librarian_Session_Session" Association="Self.FK_Librarian_Session_Session">
+          <AssociationSet Name="FK_Session_Librarian" Association="Self.FK_Session_Librarian">
+            <End Role="Librarian" EntitySet="Librarian" />
             <End Role="Session" EntitySet="Session" />
-            <End Role="Librarian_Session" EntitySet="Librarian_Session" />
           </AssociationSet>
-          <AssociationSet Name="FK_Librarian_Session_TypeOperation" Association="Self.FK_Librarian_Session_TypeOperation">
-            <End Role="TypeOperation" EntitySet="TypeOperation" />
-            <End Role="Librarian_Session" EntitySet="Librarian_Session" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Reader_PassportOfReader" Association="Self.FK_Reader_PassportOfReader">
+          <AssociationSet Name="FK_Reader_PassportOfReader1" Association="Self.FK_Reader_PassportOfReader1">
             <End Role="PassportOfReader" EntitySet="PassportOfReader" />
             <End Role="Reader" EntitySet="Reader" />
           </AssociationSet>
@@ -791,6 +835,8 @@
                 <ScalarProperty Name="IdBook" ColumnName="IdBook" />
                 <ScalarProperty Name="BookName" ColumnName="BookName" />
                 <ScalarProperty Name="BookDescription" ColumnName="BookDescription" />
+                <ScalarProperty Name="DateOfIssue" ColumnName="DateOfIssue" />
+                <ScalarProperty Name="DateOfReceipt" ColumnName="DateOfReceipt" />
                 <ScalarProperty Name="BookImage" ColumnName="BookImage" />
                 <ScalarProperty Name="IdAgeReating" ColumnName="IdAgeReating" />
                 <ScalarProperty Name="PlaceNumber" ColumnName="PlaceNumber" />
@@ -802,15 +848,7 @@
                 <ScalarProperty Name="IdBookAuthor" ColumnName="IdBookAuthor" />
                 <ScalarProperty Name="Audithory" ColumnName="Audithory" />
                 <ScalarProperty Name="IdBibliographicDecsription" ColumnName="IdBibliographicDecsription" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Book_BookAuthor">
-            <EntityTypeMapping TypeName="LibraryApplicationModel.Book_BookAuthor">
-              <MappingFragment StoreEntitySet="Book/BookAuthor">
-                <ScalarProperty Name="IdBook_BookAuthor" ColumnName="IdBook/BookAuthor" />
-                <ScalarProperty Name="IdBookAuthor" ColumnName="IdBookAuthor" />
-                <ScalarProperty Name="IdBook" ColumnName="IdBook" />
+                <ScalarProperty Name="IdPublisher" ColumnName="IdPublisher" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -822,6 +860,14 @@
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="MeddleName" ColumnName="MeddleName" />
                 <ScalarProperty Name="AuthorSighn" ColumnName="AuthorSighn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gender">
+            <EntityTypeMapping TypeName="LibraryApplicationModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="GenderName" ColumnName="GenderName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -838,16 +884,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Librarian_Session">
-            <EntityTypeMapping TypeName="LibraryApplicationModel.Librarian_Session">
-              <MappingFragment StoreEntitySet="Librarian/Session">
-                <ScalarProperty Name="IdLibrarionSessiom" ColumnName="IdLibrarionSessiom" />
-                <ScalarProperty Name="IdSession" ColumnName="IdSession" />
-                <ScalarProperty Name="IdLibrarian" ColumnName="IdLibrarian" />
-                <ScalarProperty Name="IdTypeOperation" ColumnName="IdTypeOperation" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="PassportOfReader">
             <EntityTypeMapping TypeName="LibraryApplicationModel.PassportOfReader">
               <MappingFragment StoreEntitySet="PassportOfReader">
@@ -861,6 +897,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Publisher">
+            <EntityTypeMapping TypeName="LibraryApplicationModel.Publisher">
+              <MappingFragment StoreEntitySet="Publisher">
+                <ScalarProperty Name="IdPublisher" ColumnName="IdPublisher" />
+                <ScalarProperty Name="PublisherName" ColumnName="PublisherName" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Reader">
             <EntityTypeMapping TypeName="LibraryApplicationModel.Reader">
               <MappingFragment StoreEntitySet="Reader">
@@ -870,7 +915,7 @@
                 <ScalarProperty Name="MeddleName" ColumnName="MeddleName" />
                 <ScalarProperty Name="IdPassport" ColumnName="IdPassport" />
                 <ScalarProperty Name="Birthday" ColumnName="Birthday" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -905,11 +950,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TypeOperation">
-            <EntityTypeMapping TypeName="LibraryApplicationModel.TypeOperation">
-              <MappingFragment StoreEntitySet="TypeOperation">
-                <ScalarProperty Name="IdTypeOperation" ColumnName="IdTypeOperation" />
-                <ScalarProperty Name="NameOperation" ColumnName="NameOperation" />
+          <EntitySetMapping Name="ViewSessions">
+            <EntityTypeMapping TypeName="LibraryApplicationModel.ViewSessions">
+              <MappingFragment StoreEntitySet="ViewSessions">
+                <ScalarProperty Name="IdSession" ColumnName="IdSession" />
+                <ScalarProperty Name="IdReader" ColumnName="IdReader" />
+                <ScalarProperty Name="IdBook" ColumnName="IdBook" />
+                <ScalarProperty Name="IdBookAuthor" ColumnName="IdBookAuthor" />
+                <ScalarProperty Name="DateOfBegin" ColumnName="DateOfBegin" />
+                <ScalarProperty Name="DateOfEnd" ColumnName="DateOfEnd" />
+                <ScalarProperty Name="IdLibrarian" ColumnName="IdLibrarian" />
+                <ScalarProperty Name="ReaderLastName" ColumnName="ReaderLastName" />
+                <ScalarProperty Name="ReaderFirstName" ColumnName="ReaderFirstName" />
+                <ScalarProperty Name="ReaderMeddleName" ColumnName="ReaderMeddleName" />
+                <ScalarProperty Name="BookName" ColumnName="BookName" />
+                <ScalarProperty Name="AuthorLastName" ColumnName="AuthorLastName" />
+                <ScalarProperty Name="AuthorFirstName" ColumnName="AuthorFirstName" />
+                <ScalarProperty Name="AuthorMeddleName" ColumnName="AuthorMeddleName" />
+                <ScalarProperty Name="LibrarianLastName" ColumnName="LibrarianLastName" />
+                <ScalarProperty Name="LibrarianFirstName" ColumnName="LibrarianFirstName" />
+                <ScalarProperty Name="LibrarianMeddleName" ColumnName="LibrarianMeddleName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

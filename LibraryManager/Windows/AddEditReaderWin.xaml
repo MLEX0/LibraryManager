@@ -1,0 +1,249 @@
+﻿<Window x:Class="LibraryManager.Windows.AddEditReaderWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibraryManager.Windows"
+        mc:Ignorable="d"
+        Title="AddEditReaderWin"
+        Height="500" 
+        Width="700" 
+        WindowStartupLocation="CenterScreen"
+        Loaded = "Window_Loaded">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="txtHeader"
+                   Text=""
+                   Grid.ColumnSpan="3"
+                   FontSize="24"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontWeight="Bold"/>
+
+        <TextBlock Grid.Row="1"
+                       Grid.ColumnSpan="1"
+                       Foreground="Black"
+                       FontSize="16"
+                       Text="Фамилия:"
+                       VerticalAlignment="Center"/>
+
+        <TextBlock Grid.Row="2"
+                       Grid.ColumnSpan="1"
+                       Foreground="Black"
+                       FontSize="16"
+                       Text="Имя:"
+                       VerticalAlignment="Center"/>
+
+        <TextBlock Grid.Row="3"
+                       Grid.ColumnSpan="1"
+                       Foreground="Black"
+                       FontSize="16"
+                       Text="Отчество:"
+                       VerticalAlignment="Center"/>
+
+        <TextBlock Grid.Row="4"
+                       Grid.ColumnSpan="1"
+                       Foreground="Black"
+                       FontSize="16"
+                       Text="Пол:"
+                       VerticalAlignment="Center"/>
+
+        <TextBlock Grid.Row="5"
+                       Grid.ColumnSpan="1"
+                       Foreground="Black"
+                       FontSize="16"
+                       Text="Дата рождения:"
+                       VerticalAlignment="Center"/>
+
+        <TextBlock Grid.Row="6"
+                       Grid.ColumnSpan="1"
+                       Foreground="Black"
+                       FontSize="16"
+                       Text="Серия паспорта:"
+                       VerticalAlignment="Center"/>
+
+
+        <TextBlock Grid.Row="7"
+                       Grid.ColumnSpan="1"
+                       Foreground="Black"
+                       FontSize="16"
+                       Text="Номер паспорта:"
+                       VerticalAlignment="Center"/>
+
+        <TextBlock Grid.Row="8"
+                       Grid.ColumnSpan="1"
+                       Foreground="Black"
+                       FontSize="16"
+                       Text="Кем выдан паспорт:"
+                       VerticalAlignment="Center"/>
+
+        <TextBlock Grid.Row="9"
+                       Grid.ColumnSpan="1"
+                       Foreground="Black"
+                       FontSize="16"
+                       Text="Дата выдачи паспорта:"
+                       VerticalAlignment="Center"/>
+
+        <TextBlock Grid.Row="10"
+                       Grid.ColumnSpan="1"
+                       Foreground="Black"
+                       FontSize="16"
+                       Text="Код подразделения, выдавшего паспорт:"
+                       VerticalAlignment="Center"/>
+
+        <TextBlock Grid.Row="11"
+                       Grid.ColumnSpan="1"
+                       Foreground="Black"
+                       FontSize="16"
+                       Text="Место рождения"
+                       VerticalAlignment="Center"/>
+
+        <TextBox       x:Name="txtLName"
+                       Grid.Row="1"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="1"
+                       Foreground="Black"
+                       FontSize="16"
+                       VerticalAlignment="Center"
+                       Margin="10 0 90 0"/>
+
+        <TextBox       x:Name="txtFName"
+                       Grid.Row="2"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="1"
+                       Foreground="Black"
+                       FontSize="16"
+                       VerticalAlignment="Center"
+                       Margin="10 0 90 0"/>
+
+        <TextBox       x:Name="txtMName"
+                       Grid.Row="3"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="1"
+                       Foreground="Black"
+                       FontSize="16"
+                       VerticalAlignment="Center"
+                       Margin="10 0 90 0"/>
+
+        <ComboBox       x:Name="cmbGender"
+                       Grid.Row="4"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="1"
+                       Foreground="Black"
+                       FontSize="16"
+                       VerticalAlignment="Center"
+                       Margin="10 0 190 0"/>
+
+        <DatePicker    x:Name="dpcBirthday"
+                       Grid.Row="5"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="1"
+                       Foreground="Black"
+                       FontSize="16"
+                       VerticalAlignment="Center"
+                       Margin="10 2 190 0"/>
+
+        <TextBox       x:Name="txtPSeries"
+                       Grid.Row="6"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="1"
+                       Foreground="Black"
+                       FontSize="16"
+                       VerticalAlignment="Center"
+                       Margin="10 0 190 0"
+                       PreviewTextInput="txtPSeries_PreviewTextInput"/>
+        
+        <TextBox       x:Name="txtPNumber"
+                       Grid.Row="7"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="1"
+                       Foreground="Black"
+                       FontSize="16"
+                       VerticalAlignment="Center"
+                       Margin="10 0 90 0"
+                       PreviewTextInput="txtPSeries_PreviewTextInput"
+                       />
+
+        <TextBox       x:Name="txtPPlaceOfIssue"
+                       Grid.Row="8"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="1"
+                       Foreground="Black"
+                       FontSize="16"
+                       VerticalAlignment="Center"
+                       Margin="10 0 90 0"/>
+
+        <DatePicker    x:Name="dpcPDayOfIssue"
+                       Grid.Row="9"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="1"
+                       Foreground="Black"
+                       FontSize="16"
+                       VerticalAlignment="Center"
+                       Margin="10 2 190 0"/>
+
+        <TextBox       x:Name="txtPDepartmentCode"
+                       Grid.Row="10"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="1"
+                       Foreground="Black"
+                       FontSize="16"
+                       VerticalAlignment="Center"
+                       Margin="10 0 90 0"/>
+
+        <TextBox       x:Name="txtPPlaceOfBirth"
+                       Grid.Row="11"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="1"
+                       Foreground="Black"
+                       FontSize="16"
+                       VerticalAlignment="Center"
+                       Margin="10 0 90 0"/>
+
+
+        <Button x:Name="btnSave"
+                Grid.ColumnSpan="2"
+                Width="100"
+                Grid.Row="13"
+                Margin="0 0 5 0"
+                Content="Сохранить"
+                HorizontalAlignment="Center"
+                Style="{DynamicResource RoundedButtonStyle}"
+                Click="btnSave_Click"/>
+
+        <Button x:Name="btnClose"
+                Grid.ColumnSpan="2"
+                Grid.Row="14"
+                HorizontalAlignment="Center"
+                Margin="0 0 5 0"
+                Content="Отмена"
+                Style="{DynamicResource RoundedButtonStyle}"
+                Width="100"
+                Click="btnClose_Click"
+                />
+
+
+    </Grid>
+</Window>

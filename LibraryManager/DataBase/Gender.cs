@@ -12,13 +12,18 @@ namespace LibraryManager.DataBase
     using System;
     using System.Collections.Generic;
     
-    public partial class Book_BookAuthor
+    public partial class Gender
     {
-        public int IdBook_BookAuthor { get; set; }
-        public int IdBookAuthor { get; set; }
-        public int IdBook { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Gender()
+        {
+            this.Reader = new HashSet<Reader>();
+        }
     
-        public virtual Book Book { get; set; }
-        public virtual BookAuthor BookAuthor { get; set; }
+        public int IdGender { get; set; }
+        public string GenderName { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Reader> Reader { get; set; }
     }
 }

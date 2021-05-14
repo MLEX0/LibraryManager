@@ -17,7 +17,7 @@ namespace LibraryManager.DataBase
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public BookAuthor()
         {
-            this.Book_BookAuthor = new HashSet<Book_BookAuthor>();
+            this.Book = new HashSet<Book>();
         }
     
         public int IdBookAuthor { get; set; }
@@ -27,6 +27,6 @@ namespace LibraryManager.DataBase
         public string AuthorSighn { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Book_BookAuthor> Book_BookAuthor { get; set; }
+        public virtual ICollection<Book> Book { get; set; }
     }
 }

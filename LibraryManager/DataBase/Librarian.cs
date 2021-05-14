@@ -17,7 +17,7 @@ namespace LibraryManager.DataBase
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Librarian()
         {
-            this.Librarian_Session = new HashSet<Librarian_Session>();
+            this.Session = new HashSet<Session>();
         }
     
         public int IdLibrarian { get; set; }
@@ -28,8 +28,8 @@ namespace LibraryManager.DataBase
         public string Login { get; set; }
         public string Password { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Librarian_Session> Librarian_Session { get; set; }
         public virtual Role Role { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Session> Session { get; set; }
     }
 }

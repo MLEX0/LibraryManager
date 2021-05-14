@@ -1,0 +1,89 @@
+﻿<Window x:Class="LibraryManager.Windows.AddPublisherWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibraryManager.Windows"
+        mc:Ignorable="d"
+        Height="250" 
+        Width="400"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="txtHeader"
+                   Text="Добавление издателя"
+                   Grid.ColumnSpan="3"
+                   FontSize="24"
+                   HorizontalAlignment="Center" 
+                   FontWeight="Bold"/>
+
+        <TextBlock Text="Название издателя:"
+                   Grid.Row="2"
+                   Grid.Column="0"
+                   FontSize="17"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"
+                   Margin="20 0 0 0"
+                    />
+
+        <TextBlock Text="Город издателя"
+                   Grid.Row="3"
+                   Grid.Column="0"
+                   FontSize="17"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"
+                   Margin="20 0 0 0"
+                    />
+
+        <TextBox x:Name="txtPublisher" 
+                 Grid.Row="2"
+                 Grid.Column="1"
+                 Margin="5 2 5 2"
+                 FontSize="14"
+                 VerticalContentAlignment="Center"/>
+
+        <TextBox x:Name="txtCityName" 
+                 Grid.Row="3"
+                 Grid.Column="1"
+                 Margin="5 2 5 2"
+                 FontSize="14"
+                 VerticalContentAlignment="Center"/>
+
+        <Button x:Name="btnSave"
+                Grid.ColumnSpan="2"
+                Content="Добавить"
+                Grid.Row="5"
+                Height="30"
+                Style="{DynamicResource RoundedButtonStyle}"
+                Width="100" Click="btnSave_Click"
+                />
+
+        <Button x:Name="btnClose"
+                Grid.ColumnSpan="2"
+                Content="Закрыть"
+                Grid.Row="6"
+                Height="30"
+                Style="{DynamicResource RoundedButtonStyle}"
+                Width="100" Click="btnClose_Click"
+                />
+
+
+
+
+    </Grid>
+</Window>

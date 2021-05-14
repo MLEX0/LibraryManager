@@ -9,6 +9,6 @@ namespace LibraryManager
 {
     class AppData
     {
-        public static Entities context = new Entities();// КОНТЕКСТ!!!!
+        public static Entities context = new Entities();
     }
 }

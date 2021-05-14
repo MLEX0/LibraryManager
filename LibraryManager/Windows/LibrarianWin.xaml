@@ -6,11 +6,111 @@
         xmlns:local="clr-namespace:LibraryManager.Windows"
         mc:Ignorable="d"
         Title="LibrarianWin" 
-        Height="450" 
-        Width="800"
-        WindowStartupLocation="CenterScreen">
+        Height="700" 
+        Width="1200"
+        WindowStartupLocation="CenterScreen"
+        Background="#FF312C28"
+        >
     
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="12*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <WrapPanel Grid.Row="0" 
+                   Grid.Column="0" 
+                   VerticalAlignment="Center"
+                   Grid.ColumnSpan="3">
+
+            <TextBlock Text="Поиск сотрудников" 
+                       FontSize="20"
+                       Foreground="FloralWhite"
+                       Margin="200 0 0 0"/>
+
+            <TextBox x:Name="txtSearch" 
+                     Width="250" 
+                     Margin="20 0 0 0" 
+                     FontSize="15"
+                     VerticalContentAlignment="Center"
+                     FontFamily="Corbel" 
+                     TextChanged="txtSearch_TextChanged"
+                     />
+
+            <TextBlock Margin="100 0 0 0"
+                       VerticalAlignment="Center" 
+                       FontSize="16">
+                <Run Text="Пользователь:" 
+                     Foreground="FloralWhite"/>
+                <Run x:Name="txtNameLib" 
+                     Foreground="FloralWhite"/>
+            </TextBlock>
+        </WrapPanel>
+
+
+        <ListView x:Name="lvLibrarian"
+                  Grid.Column="1"
+                  Grid.Row="1"
+                  >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding IdLibrarian}"  TextBlock.FontSize="20"/>
+                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding FirsttName}" TextBlock.FontSize="20"/>
+                    <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding LastName}" TextBlock.FontSize="20"/>
+                    <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding MeddleName}" TextBlock.FontSize="20"/>
+                    <GridViewColumn Header="Роль" DisplayMemberBinding="{Binding Role.RoleName}" TextBlock.FontSize="20"/>
+                    <GridViewColumn Header="Логин" DisplayMemberBinding="{Binding Login}" TextBlock.FontSize="20"/>
+                    <GridViewColumn Header="Пароль" DisplayMemberBinding="{Binding Password}" TextBlock.FontSize="20"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Grid Grid.Column="1"
+              Grid.Row="2">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="btnChange"
+                    Content="Изменить"
+                    Margin="20 10 20 10" 
+                    Click="btnChange_Click"
+                    Style="{DynamicResource RoundedButtonStyle}"
+                    />
+
+            <Button x:Name="btnAdd"
+                    Content="Добавить"
+                    Margin="20 10 20 10"
+                    Grid.Column="1" 
+                    Click="btnAdd_Click"
+                    Style="{DynamicResource RoundedButtonStyle}"/>
+
+            <Button x:Name="btnRemove"
+                    Content="Удалить"
+                    Margin="20 10 20 10"
+                    Grid.Column="2" 
+                    Click="btnRemove_Click"
+                    Style="{DynamicResource RoundedButtonStyle}"/>
+        </Grid>
+
+        <Button Style="{DynamicResource RoundedButtonStyle}"
+                x:Name="btnBack"
+                Content="Назад"
+                Margin="5 10 5 10"
+                Grid.Column="2"
+                Grid.Row="2"
+                FontSize="15" Click="btnBack_Click"
+                
+                />
+
     </Grid>
 </Window>

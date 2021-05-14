@@ -26,8 +26,9 @@ namespace LibraryManager.DataBase
         public string MeddleName { get; set; }
         public int IdPassport { get; set; }
         public System.DateTime Birthday { get; set; }
-        public string Gender { get; set; }
+        public int IdGender { get; set; }
     
+        public virtual Gender Gender { get; set; }
         public virtual PassportOfReader PassportOfReader { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Session> Session { get; set; }

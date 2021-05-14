@@ -7,24 +7,46 @@
         mc:Ignorable="d"
         Title="AdminWin" 
         Height="550" 
-        Width="820"
+        Width="420"
         WindowStartupLocation="CenterScreen"
         Background="#FF312C28">
     
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="8*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="6*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="1"
+        <TextBlock 
+                   Grid.ColumnSpan="3"
+                   FontSize="30"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                   Margin="0 15 0 0"
+                   Foreground="White"
+                   Text="Меню администратора"
+                   FontWeight="Bold"/>
+
+        <TextBlock x:Name="txtWelcome"
+                   Grid.ColumnSpan="3"
+                   Grid.Row="1"
+                   FontSize="15"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                   Margin="0 15 0 0"
+                   Foreground="White"
+                   Text="Меню администратора"
+                   />
+
+        <StackPanel Grid.Row="2"
                     Grid.RowSpan="2"
                     Grid.Column="1">
             
@@ -33,30 +55,36 @@
                     Height="70"
                     Margin="0 40 0 0"
                     Content="Редактирование книг" 
-                    Click="btnBooks_Click"/>
+                    Click="btnBooks_Click"
+                    Style="{DynamicResource RoundedButtonStyle}"
+                    />
             
             <Button x:Name="btnLibrarian"
                     Width="250"
                     Height="70"
                     Margin="0 10 0 0"
                     Content="Редактирование сотрудников" 
-                    Click="btnLibrarian_Click"/>
+                    Click="btnLibrarian_Click"
+                    Style="{DynamicResource RoundedButtonStyle}"
+                    />
             
             <Button x:Name="btnClient"
                     Width="250"
                     Height="70"
                     Margin="0 10 0 0"
                     Content="Редактирование читательских билетов" 
-                    Click="btnClient_Click"/>
+                    Click="btnClient_Click"
+                    Style="{DynamicResource RoundedButtonStyle}"
+                    />
 
             <Button x:Name="btnClose"
                     Width="200"
                     Height="70"
                     Margin="0 40 0 0"
-                    Content="Закрыть" 
+                    Content="Выход" 
                     Click="btnClose_Click" 
+                    Style="{DynamicResource RoundedButtonStyle}"
                     />
-
 
         </StackPanel>
 

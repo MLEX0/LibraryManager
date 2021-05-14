@@ -6,10 +6,437 @@
         xmlns:local="clr-namespace:LibraryManager.Windows"
         mc:Ignorable="d"
         Title="ReaderWin" 
-        Height="450" 
-        Width="800"
-        WindowStartupLocation="CenterScreen">
+        Height="700" 
+        Width="1200"
+        WindowStartupLocation="CenterScreen"
+        Background="#FF312C28"
+        >
+
+
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="12*"/>
+            <ColumnDefinition Width="6*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <WrapPanel Grid.Row="0" 
+                   Grid.Column="0" 
+                   VerticalAlignment="Center"
+                   Grid.ColumnSpan="3">
+
+            <TextBlock Text="Поиск читателей" 
+                       FontSize="20"
+                       Foreground="FloralWhite"
+                       Margin="200 0 0 0"/>
+
+            <TextBox x:Name="txtSearch" 
+                     Width="250" 
+                     Margin="20 0 0 0" 
+                     FontSize="15"
+                     VerticalContentAlignment="Center"
+                     FontFamily="Corbel" 
+                     TextChanged="txtSearch_TextChanged"
+                     />
+
+            <TextBlock Margin="100 0 0 0"
+                       VerticalAlignment="Center" 
+                       FontSize="16">
+                <Run Text="Пользователь:" 
+                     Foreground="FloralWhite"/>
+                <Run x:Name="txtNameLib" 
+                     Foreground="FloralWhite"/>
+            </TextBlock>
+        </WrapPanel>
+
+        <Border    x:Name="brdNoSelected"
+                   Grid.Row="1"
+                   Grid.Column="2"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Width="300"
+                   Height="60"
+                   Background="DarkGray"
+                   Opacity="0.5"
+                   CornerRadius="15"
+                   />
+
+        <TextBlock x:Name="txtNoSelected"
+                   Text="Выберите запись"
+                   Foreground="White"
+                   Grid.Row="1"
+                   Grid.Column="2"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontSize="30"
+                   />
+
+
+        <ListView x:Name="ListReader" 
+                  Grid.Row="1" 
+                  Grid.Column="1" 
+                  Background="#FF312C28"
+                  BorderThickness="0"
+                  >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    
+                    <Grid Height="80"
+                          PreviewMouseLeftButtonDown="Grid_PreviewMouseLeftButtonDown">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition Width="200"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border 
+                Background="AliceBlue"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                CornerRadius="15"/>
+
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                                <TextBlock 
+                            Grid.Row="0" 
+                            Text="Фио:"
+                            TextWrapping="Wrap" 
+                            FontSize="20" 
+                            FontWeight="Bold"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Right"
+                            Margin="0 0 20 0"
+                            />
+
+                                <TextBlock  
+                             Grid.Row="0" 
+                             Text="Дата рождения:"
+                             FontSize="16"
+                             TextWrapping="Wrap"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Right"
+                             Margin="0 0 20 0"
+                             />
+
+                                <TextBlock  
+                             Grid.Row="0" 
+                             Text="Серия и номер:"
+                             FontSize="16"
+                             TextWrapping="Wrap"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Right"
+                             Margin="0 0 20 0"
+                             />
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid Grid.Column="1"
+              Grid.ColumnSpan="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                                <TextBlock 
+                            Grid.Row="0" 
+                            Text="{Binding ReaderFIO}"
+                            TextWrapping="Wrap" 
+                            FontSize="20" 
+                            FontWeight="Bold"
+                            />
+
+                                <TextBlock  
+                             Grid.Row="0" 
+                             Text="{Binding Birthday}"
+                             FontSize="16"
+                             TextWrapping="Wrap"
+                             />
+
+                                <TextBlock  
+                             Grid.Row="0" 
+                             Text="{Binding ReaderPassport}"
+                             FontSize="16"
+                             TextWrapping="Wrap"
+                             />
+                            </StackPanel>
+                        </Grid>
+
+                    </Grid>
+                    
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button x:Name="btnAdd"
+                Content="Добавить читателя"
+                FontSize="20"
+                Grid.Column="1"
+                Grid.Row="2"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Height="70"
+                Width="200"
+                Margin="10 0 10 0"
+                Style="{DynamicResource RoundedButtonStyle}" 
+                Click="btnAdd_Click"
+                />
+
+
+        <Grid x:Name="grdViewBar"
+              Grid.Row="1"
+              Grid.Column="2" 
+              ScrollViewer.VerticalScrollBarVisibility="Auto"
+              Visibility="Hidden"
+              >
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.8*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock 
+                       Grid.RowSpan="2"
+                       Grid.ColumnSpan="3"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontSize="20"
+                       Foreground="White"
+                       FontWeight="Bold"
+                       Text="Сведения о читателе:"
+                       />
+            
+            <TextBlock Grid.Row="2"
+                       Grid.ColumnSpan="1"
+                       Foreground="White"
+                       FontSize="16"
+                       Text="Фамилия:"
+                       VerticalAlignment="Center"/>
+
+            <TextBlock Grid.Row="3"
+                       Grid.ColumnSpan="1"
+                       Foreground="White"
+                       FontSize="16"
+                       Text="Имя:"
+                       VerticalAlignment="Center"/>
+            
+            <TextBlock Grid.Row="4"
+                       Grid.ColumnSpan="1"
+                       Foreground="White"
+                       FontSize="16"
+                       Text="Отчество:"
+                       VerticalAlignment="Center"/>
+
+            <TextBlock Grid.Row="5"
+                       Grid.ColumnSpan="1"
+                       Foreground="White"
+                       FontSize="16"
+                       Text="Пол:"
+                       VerticalAlignment="Center"/>
+
+            <TextBlock Grid.Row="6"
+                       Grid.ColumnSpan="1"
+                       Foreground="White"
+                       FontSize="16"
+                       Text="Дата рождения:"
+                       VerticalAlignment="Center"/>
+
+            <TextBlock Grid.Row="7"
+                       Grid.ColumnSpan="1"
+                       Foreground="White"
+                       FontSize="16"
+                       Text="Возраст:"
+                       VerticalAlignment="Center"/>
+
+            <TextBlock Grid.Row="8"
+                       Grid.ColumnSpan="1"
+                       Foreground="White"
+                       FontSize="16"
+                       Text="Серия паспорта:"
+                       VerticalAlignment="Center"/>
+
+
+            <TextBlock Grid.Row="9"
+                       Grid.ColumnSpan="1"
+                       Foreground="White"
+                       FontSize="16"
+                       Text="Номер паспорта:"
+                       VerticalAlignment="Center"/>
+
+
+            <TextBlock Grid.Row="10"
+                       Grid.ColumnSpan="1"
+                       Foreground="White"
+                       FontSize="16"
+                       Text="Идентификатор:"
+                       VerticalAlignment="Center"/>
+
+
+            <TextBlock x:Name="txtLName"
+                       Grid.Row="2"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Foreground="White"
+                       FontSize="15"
+                       TextWrapping="Wrap"
+                       VerticalAlignment="Center"/>
+
+            <TextBlock x:Name="txtFName"
+                       Grid.Row="3"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Foreground="White"
+                       FontSize="15"
+                       TextWrapping="Wrap"
+                       VerticalAlignment="Center"/>
+
+            <TextBlock x:Name="txtMName"
+                       Grid.Row="4"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Foreground="White"
+                       FontSize="15"
+                       TextWrapping="Wrap"
+                       VerticalAlignment="Center"/>
+
+            <TextBlock x:Name="txtGender"
+                       Grid.Row="5"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Foreground="White"
+                       FontSize="15"
+                       TextWrapping="Wrap"
+                       VerticalAlignment="Center"/>
+
+            <TextBlock x:Name="txtBirthday"
+                       Grid.Row="6"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Foreground="White"
+                       FontSize="15"
+                       TextWrapping="Wrap"
+                       VerticalAlignment="Center"/>
+
+            <TextBlock x:Name="txtAge"
+                       Grid.Row="7"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Foreground="White"
+                       FontSize="15"
+                       TextWrapping="Wrap"
+                       VerticalAlignment="Center"/>
+
+            <TextBlock x:Name="txtPassportSeries"
+                       Grid.Row="8"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Foreground="White"
+                       FontSize="15"
+                       TextWrapping="Wrap"
+                       VerticalAlignment="Center"/>
+
+            <TextBlock x:Name="txtPassportNumber"
+                       Grid.Row="9"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Foreground="White"
+                       FontSize="15"
+                       TextWrapping="Wrap"
+                       VerticalAlignment="Center"/>
+
+            <TextBlock x:Name="txtReaderId"
+                       Grid.Row="10"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Foreground="White"
+                       FontSize="15"
+                       TextWrapping="Wrap"
+                       VerticalAlignment="Center"/>
+
+
+
+
+
+
+
+            <Grid Grid.Row="14"
+                  Grid.RowSpan="2"
+                  Grid.ColumnSpan="3">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="btnReaderSessions"
+                        Content="Книги"
+                        Margin="5 0 10 5"
+                        FontSize="13"
+                        Style="{DynamicResource RoundedButtonStyle}" 
+                        Click="btnReaderSessions_Click"/>
+
+                <Button x:Name="btnChange"
+                        Content="Изменить"
+                        Grid.Column="1"
+                        Margin="5 0 10 5"
+                        FontSize="15"
+                        Style="{DynamicResource RoundedButtonStyle}" 
+                        Click="btnChange_Click"/>
+
+                <Button x:Name="btnDelete"
+                        Content="Удалить"
+                        Grid.Column="2"
+                        Margin="5 0 10 5"
+                        FontSize="15"
+                        Style="{DynamicResource RoundedButtonStyle}" Click="btnDelete_Click"
+                        />
+
+            </Grid>
+
+        </Grid>
+
+
+
+        <Button Style="{DynamicResource RoundedButtonStyle}"
+                x:Name="btnBack"
+                Content="Назад"
+                Margin="200 10 20 10"
+                Grid.Column="2"
+                Grid.Row="2"
+                FontSize="15"
+                Click="btnBack_Click" 
+                />
+
+
     </Grid>
 </Window>
+

@@ -17,29 +17,31 @@ namespace LibraryManager.DataBase
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Book()
         {
-            this.Book_BookAuthor = new HashSet<Book_BookAuthor>();
             this.Session = new HashSet<Session>();
         }
     
         public int IdBook { get; set; }
         public string BookName { get; set; }
         public string BookDescription { get; set; }
+        public System.DateTime DateOfIssue { get; set; }
+        public System.DateTime DateOfReceipt { get; set; }
         public byte[] BookImage { get; set; }
         public int IdAgeReating { get; set; }
         public string PlaceNumber { get; set; }
         public int CountBooksInLibrary { get; set; }
         public int CountBooksInUse { get; set; }
-        public int ISBN { get; set; }
+        public string ISBN { get; set; }
         public string UDK { get; set; }
         public string BBK { get; set; }
         public int IdBookAuthor { get; set; }
         public string Audithory { get; set; }
-        public int IdBibliographicDecsription { get; set; }
+        public Nullable<int> IdBibliographicDecsription { get; set; }
+        public int IdPublisher { get; set; }
     
         public virtual AgeRating AgeRating { get; set; }
         public virtual BibliographicDescription BibliographicDescription { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Book_BookAuthor> Book_BookAuthor { get; set; }
+        public virtual BookAuthor BookAuthor { get; set; }
+        public virtual Publisher Publisher { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Session> Session { get; set; }
     }
