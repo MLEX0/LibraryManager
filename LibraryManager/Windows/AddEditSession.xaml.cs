@@ -40,7 +40,7 @@ namespace LibraryManager.Windows
             AddSession = new Session();
         }
 
-        private void btnAddBookInList_Click(object sender, RoutedEventArgs e)
+        private void btnAddBookInList_Click(object sender, RoutedEventArgs e)// добавление книги в лист
         {
             MainWin mainWin = new MainWin(CurrentUser, SelectReader);
             this.Opacity = 0.5;
@@ -50,7 +50,7 @@ namespace LibraryManager.Windows
             lvAddBook.ItemsSource = HelpClass.HelpData.AddedInSessionBooks.ToList();
         }
 
-        private void btnDeleteFromList_Click(object sender, RoutedEventArgs e)
+        private void btnDeleteFromList_Click(object sender, RoutedEventArgs e)// удаление книги из листа
         {
             if (lvAddBook.SelectedItem is Book book)
             {
@@ -83,7 +83,7 @@ namespace LibraryManager.Windows
 
             try
             {
-                for (int i = 0; i < HelpClass.HelpData.AddedInSessionBooks.Count; i++)
+                for (int i = 0; i < HelpClass.HelpData.AddedInSessionBooks.Count; i++)// изменение количества всех книг
                 {
                     EditBook = HelpClass.HelpData.AddedInSessionBooks[i];
 
@@ -93,7 +93,7 @@ namespace LibraryManager.Windows
                     AppData.context.SaveChanges();
                 }
 
-                for (int i = 0; i < HelpClass.HelpData.AddedInSessionBooks.Count; i++)
+                for (int i = 0; i < HelpClass.HelpData.AddedInSessionBooks.Count; i++)// добавление сессии 
                 {
 
                     AddSession.IdBook = HelpClass.HelpData.AddedInSessionBooks[i].IdBook;

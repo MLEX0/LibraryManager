@@ -85,6 +85,15 @@ namespace LibraryManager.Windows
                     scrvDescription.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
                 }
 
+                if (txtName.Text.Length > 45)
+                {
+                    txtName.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    txtName.Visibility = Visibility.Visible;
+                }
+
                 txtISBN.Text = selectbook.ISBN;
                 txtBBK.Text = selectbook.BBK;
                 txtUDK.Text = selectbook.UDK;
@@ -102,6 +111,10 @@ namespace LibraryManager.Windows
                         bitmapImage.EndInit();
                         imageBook.Source = bitmapImage;
                     }
+                }
+                else 
+                {
+                    imageBook.Source = null;
                 }
             }
         }

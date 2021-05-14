@@ -60,15 +60,15 @@ namespace LibraryManager.Windows
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(txtFName.Text) && txtFName.Text.Length > 50)// Проверка ввода полей
+                if (string.IsNullOrWhiteSpace(txtFName.Text) || txtFName.Text.Length > 50)// Проверка ввода полей
                 {
-                    MessageBox.Show("Поле имя не может быть пустым", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Поле имя не может быть пустым или превышать 50 символов", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
-                if (string.IsNullOrWhiteSpace(txtLName.Text) && txtLName.Text.Length > 50)
+                if (string.IsNullOrWhiteSpace(txtLName.Text) || txtLName.Text.Length > 50)
                 {
-                    MessageBox.Show("Поле фамилия не может быть пустым", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Поле фамилия не может быть пустым или превышать 50 символов", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
@@ -78,27 +78,27 @@ namespace LibraryManager.Windows
                     return;
                 }
 
-                if (string.IsNullOrWhiteSpace(txtPDepartmentCode.Text) && txtPDepartmentCode.Text.Length > 20)
+                if (string.IsNullOrWhiteSpace(txtPDepartmentCode.Text) || txtPDepartmentCode.Text.Length > 20)
                 {
-                    MessageBox.Show("Поле Код подразделения не может быть пустым", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Поле Код подразделения не может быть пустым или превышать 20 символов", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
-                if (string.IsNullOrWhiteSpace(txtPNumber.Text) && Convert.ToInt32(txtPNumber.Text) > 999999)
+                if (string.IsNullOrWhiteSpace(txtPNumber.Text) || txtPNumber.Text.Length > 7)
                 {
-                    MessageBox.Show("Поле номер паспорта не может быть пустым", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Поле номер паспорта не может быть пустым или превышать 7 символов", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
-                if (string.IsNullOrWhiteSpace(txtPPlaceOfBirth.Text))
+                if (string.IsNullOrWhiteSpace(txtPPlaceOfBirth.Text) || txtPPlaceOfBirth.Text.Length > 200)
                 {
-                    MessageBox.Show("Поле место рождения не может быть пустым", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Поле место рождения не может быть пустым или превышать 200 символов", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
-                if (string.IsNullOrWhiteSpace(txtPPlaceOfIssue.Text))
+                if (string.IsNullOrWhiteSpace(txtPPlaceOfIssue.Text) || txtPPlaceOfIssue.Text.Length > 500)
                 {
-                    MessageBox.Show("Поле кем выдан не может быть пустым", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Поле кем выдан не может быть пустым или превышать 500 символов", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
@@ -114,13 +114,13 @@ namespace LibraryManager.Windows
                     return;
                 }
 
-                if (string.IsNullOrWhiteSpace(txtPSeries.Text) && Convert.ToInt32(txtPNumber.Text) > 9999)
+                if (string.IsNullOrWhiteSpace(txtPSeries.Text) || txtPSeries.Text.Length > 4)
                 {
-                    MessageBox.Show("Поле серия паспорта не может быть пустым", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Поле серия паспорта не может быть пустым или превышать 4 символа", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
-                if (isEdit == false)
+                if (isEdit == false)// добавление
                 {
                     AddPassport.DataOfIssue = dpcPDayOfIssue.SelectedDate.Value;
                     AddPassport.DepartmentСode = txtPDepartmentCode.Text;
@@ -151,7 +151,7 @@ namespace LibraryManager.Windows
                     AppData.context.SaveChanges();
                     MessageBox.Show($"Читатель {AddReader.FirstName} {AddReader.LastName} {txtMName.Text} добавлен");
                 }
-                if (isEdit == true)
+                if (isEdit == true)// редактирование
                 {
                     EditPassport.DataOfIssue = dpcPDayOfIssue.SelectedDate.Value;
                     EditPassport.DepartmentСode = txtPDepartmentCode.Text;
@@ -193,7 +193,7 @@ namespace LibraryManager.Windows
             this.Close();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)// заполнение полей из базы
         {
             if (isEdit == true)
             {
@@ -212,7 +212,7 @@ namespace LibraryManager.Windows
             }
         }
 
-        private void txtPSeries_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void txtPSeries_PreviewTextInput(object sender, TextCompositionEventArgs e)// запрет на ввод всего, кроме чисел
         {
             e.Handled = "0123456789".IndexOf(e.Text) < 0;
         }

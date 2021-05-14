@@ -39,13 +39,13 @@ namespace LibraryManager.Windows
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(txtPublisher.Text) && txtPublisher.Text.Length > 150)
+                if (string.IsNullOrWhiteSpace(txtPublisher.Text) || txtPublisher.Text.Length > 150)
                 {
                     MessageBox.Show("Поле название издателя не может быть пустым \nи вмещать в себя более 150 символов!", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
-                if (string.IsNullOrWhiteSpace(txtCityName.Text) && txtCityName.Text.Length > 150)
+                if (string.IsNullOrWhiteSpace(txtCityName.Text) || txtCityName.Text.Length > 150)
                 {
                     MessageBox.Show("Поле название города не может быть пустым \nи вмещать в себя более 150 символов!", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
@@ -60,9 +60,9 @@ namespace LibraryManager.Windows
                 MessageBox.Show($"Издатель {AddPublisher.PublisherName} добавлен");
                 this.Close();
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Ошибка базы данных", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error); ;
             }
         }
     }

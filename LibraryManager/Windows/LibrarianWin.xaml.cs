@@ -71,7 +71,7 @@ namespace LibraryManager.Windows
             lvLibrarian.ItemsSource = AppData.context.Librarian.ToList();
         }
 
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        private void btnAdd_Click(object sender, RoutedEventArgs e)// добавление библиотекаря
         {
             AddEditLibrarian addEditWin = new AddEditLibrarian();
             this.Opacity = 0.5;
@@ -82,7 +82,7 @@ namespace LibraryManager.Windows
 
         private void btnChange_Click(object sender, RoutedEventArgs e)
         {
-            if (lvLibrarian.SelectedItem is Librarian selectuser)
+            if (lvLibrarian.SelectedItem is Librarian selectuser)// проверка приведения к типу данных
             {
                 AddEditLibrarian addEditWin = new AddEditLibrarian(selectuser);
                 this.Opacity = 0.5;
@@ -92,11 +92,11 @@ namespace LibraryManager.Windows
             }
             else
             {
-                MessageBox.Show("Запись не выбрана", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Запись не выбрана", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);// если не привёлся, значит запись не выбрана
             }
         }
 
-        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
+        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)// поиск по значению
         {
             lvLibrarian.ItemsSource = AppData.context.Librarian.Where(i => i.FirstName.Contains(txtSearch.Text)
             || i.LastName.Contains(txtSearch.Text)

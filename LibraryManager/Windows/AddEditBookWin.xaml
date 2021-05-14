@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryManager.Windows"
         mc:Ignorable="d"
+        Title="Изменение книги"
         Height="500" 
         Width="700" 
         WindowStartupLocation="CenterScreen"
@@ -279,7 +280,8 @@
                  Grid.Column="1"
                  Margin="5 2 100 2"
                  FontSize="14"
-                 VerticalContentAlignment="Center"/>
+                 VerticalContentAlignment="Center"
+                 PreviewTextInput="txtCountInLibrary_PreviewTextInput"/>
 
         <TextBox x:Name="txtAudithoryText" 
                  Grid.Row="13"

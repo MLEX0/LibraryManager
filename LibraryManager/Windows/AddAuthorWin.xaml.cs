@@ -36,34 +36,41 @@ namespace LibraryManager.Windows
             this.Close();
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private void btnSave_Click(object sender, RoutedEventArgs e)// сохранение
         {
 
             try
             {
-                if (string.IsNullOrWhiteSpace(txtAuthorFName.Text))
+                if (string.IsNullOrWhiteSpace(txtAuthorFName.Text) || txtAuthorFName.Text.Length > 50)// проверки полей
                 {
-                    MessageBox.Show("Поле имя не может быть пустым", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Поле имя не может быть пустым или содержать в себе больше 50 символов", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
-                if (string.IsNullOrWhiteSpace(txtAuthorLName.Text))
+                if (string.IsNullOrWhiteSpace(txtAuthorLName.Text) || txtAuthorLName.Text.Length > 50)
                 {
-                    MessageBox.Show("Поле фамилия не может быть пустым", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Поле фамилия не может быть пустым или содержать в себе больше 50 символов", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
-                if (string.IsNullOrWhiteSpace(txtAuthorSign.Text))
+                if (txtAuthorMName.Text.Length > 50)
                 {
-                    MessageBox.Show("Поле авторский знак не может быть пустым", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Поле отчесвто не может содержать в себе больше 50 символов", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+                if (string.IsNullOrWhiteSpace(txtAuthorSign.Text) || txtAuthorSign.Text.Length > 10)
+                {
+                    MessageBox.Show("Поле авторский знак не может быть пустым или содержать в себе больше 30 символов", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
-                AddAuthor.FirstName = txtAuthorFName.Text;
+
+
+                AddAuthor.FirstName = txtAuthorFName.Text;// заполнение свойства добавления
                 AddAuthor.LastName = txtAuthorLName.Text;
                 AddAuthor.AuthorSighn = txtAuthorSign.Text;
 
-                if (txtAuthorMName.Text == " " || txtAuthorMName.Text == null)
+                if (txtAuthorMName.Text == " " || txtAuthorMName.Text == null)// отчество может быть пустым
                 {
                     AddAuthor.MeddleName = null;
                 }
@@ -75,7 +82,7 @@ namespace LibraryManager.Windows
                 HelpData.NowAddedAuthor = AddAuthor;
                 AppData.context.BookAuthor.Add(AddAuthor); // добавление книги
                 AppData.context.SaveChanges();
-                MessageBox.Show($"Автор {txtAuthorFName.Text} {txtAuthorLName.Text} {txtAuthorMName.Text} добавлен");
+                MessageBox.Show($"Автор {txtAuthorFName.Text} {txtAuthorLName.Text} {txtAuthorMName.Text} добавлен", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.Close();
             }
             catch

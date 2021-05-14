@@ -62,33 +62,39 @@ namespace LibraryManager.Windows
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(txtLastName.Text))
+                if (string.IsNullOrWhiteSpace(txtLastName.Text) || txtLastName.Text.Length > 50)// проверка полей
                 {
-                    MessageBox.Show("Поле Фамилия не может быть пустым", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Поле Фамилия не может быть пустым или иметь более 50 символов", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
-                if (string.IsNullOrWhiteSpace(txtFirstName.Text))
+                if (string.IsNullOrWhiteSpace(txtFirstName.Text) || txtFirstName.Text.Length > 50)
                 {
-                    MessageBox.Show("Поле Имя не может быть пустым", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Поле Имя не может быть пустым или иметь более 50 символов", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
-                if (string.IsNullOrWhiteSpace(txtLogin.Text))
+                if (txtMiddleName.Text.Length > 50)
                 {
-                    MessageBox.Show("Поле Логин не может быть пустым", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Поле Отчество не может иметь более 50 символов", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
-                if (string.IsNullOrWhiteSpace(txtPassword.Text))
+                if (string.IsNullOrWhiteSpace(txtLogin.Text) || txtLogin.Text.Length > 20)
                 {
-                    MessageBox.Show("Поле Логин не может быть пустым", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Поле Логин не может быть пустым или иметь более 20 символов", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(txtPassword.Text) || txtPassword.Text.Length > 20)
+                {
+                    MessageBox.Show("Поле Логин не может быть пустым или иметь более 20 символов", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
                 var uniqueUser = AppData.context.Librarian.ToList().Where(i => i.Login == txtLogin.Text).FirstOrDefault();
 
-                if (isEdit == false)
+                if (isEdit == false)// добавление пользователя
                 {
                     if (uniqueUser == null)
                     {
@@ -116,7 +122,7 @@ namespace LibraryManager.Windows
                         MessageBox.Show("Логин занят", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Stop);
                     }
                 }
-                else if (isEdit == true)
+                else if (isEdit == true)// редактирование пользователя
                 {
                     if (uniqueUser == null || uniqueUser.Login == EditLibrarian.Login)
                     {
@@ -152,7 +158,7 @@ namespace LibraryManager.Windows
             }
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)// заполнение полей из базы
         {
             if (isEdit == true)
             {

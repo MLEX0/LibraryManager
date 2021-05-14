@@ -115,16 +115,25 @@ namespace LibraryManager.Windows
 
             if (openFile.ShowDialog() == true)
             {
-                imgBook.Source = new BitmapImage(new Uri(openFile.FileName));
-                pathImage = openFile.FileName;
+                try// проверка на тип файла
+                {
+                    imgBook.Source = new BitmapImage(new Uri(openFile.FileName));
+                    pathImage = openFile.FileName;
+                }
+                catch
+                {
+                    MessageBox.Show("Недопустимый тип файла!", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                    pathImage = null;
+                    imgBook.Source = null;
+                }
             }
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtBookName.Text))
+            if (string.IsNullOrWhiteSpace(txtBookName.Text) || txtBookName.Text.Length > 100)
             {
-                MessageBox.Show("Поле название не может быть пустым", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Поле название не может быть пустым или содержать более 100 символов", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -134,27 +143,27 @@ namespace LibraryManager.Windows
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(txtISBN.Text))
+            if (string.IsNullOrWhiteSpace(txtISBN.Text) || txtISBN.Text.Length > 50)
             {
-                MessageBox.Show("Поле ISBN не может быть пустым", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Поле ISBN не может быть пустым или содержать более 100 символов", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(txtUDK.Text))
+            if (string.IsNullOrWhiteSpace(txtUDK.Text) || txtUDK.Text.Length > 50)
             {
-                MessageBox.Show("Поле UDK не может быть пустым", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Поле UDK не может быть пустым или содержать более 50 символов", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(txtBBK.Text))
+            if (string.IsNullOrWhiteSpace(txtBBK.Text) || txtBBK.Text.Length > 50)
             {
-                MessageBox.Show("Поле BBK не может быть пустым", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Поле BBK не может быть пустым или содержать более 50 символов", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(txtPlace.Text))
+            if (string.IsNullOrWhiteSpace(txtPlace.Text) || txtPlace.Text.Length > 200)
             {
-                MessageBox.Show("Поле место на полке не может быть пустым", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Поле место на полке не может быть пустым или содержать более 200 символов", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -164,15 +173,15 @@ namespace LibraryManager.Windows
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(txtCountInLibrary.Text))
+            if (string.IsNullOrWhiteSpace(txtCountInLibrary.Text) || txtCountInLibrary.Text.Length > 7)
             {
-                MessageBox.Show("Поле количество книг не может быть пустым", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Поле количество книг не может быть пустым или содержать более 7 символов", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(txtAudithoryText.Text))
+            if (string.IsNullOrWhiteSpace(txtAudithoryText.Text) ||  txtAudithoryText.Text.Length > 100)
             {
-                MessageBox.Show("Поле аудитория не может быть пустым", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Поле аудитория не может быть пустым или содержать более 100 символов", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -218,7 +227,9 @@ namespace LibraryManager.Windows
                     .Where(i => i.PublisherName == cmbPublisher.Text)
                     .Select(i => i.IdPublisher).FirstOrDefault();
 
-                    AddBook.IdBookAuthor = AppData.context.BookAuthor.Where(i => i.IdBookAuthor == cmbAuthor.SelectedIndex + 1).Select(i => i.IdBookAuthor).FirstOrDefault();
+                    AddBook.IdBookAuthor = AppData.context.BookAuthor
+                        .Where(i => i.IdBookAuthor == cmbAuthor.SelectedIndex + 1)
+                        .Select(i => i.IdBookAuthor).FirstOrDefault();
 
 
                     AddBook.IdAgeReating = AppData.context.AgeRating
@@ -254,12 +265,12 @@ namespace LibraryManager.Windows
 
 
                     EditBook.IdPublisher = AppData.context.Publisher
-                    .Where(i => i.PublisherName == cmbPublisher.Text)
+                    .Where(i => i.IdPublisher == cmbPublisher.SelectedIndex + 1)
                     .Select(i => i.IdPublisher).FirstOrDefault();
 
-                    EditBook.IdAgeReating = AppData.context.AgeRating
-                    .Where(i => i.NameRaiting == cmbAgeRaiting.Text)
-                    .Select(i => i.IdAgeRating).FirstOrDefault();
+                    EditBook.IdBookAuthor = AppData.context.BookAuthor
+                    .Where(i => i.IdBookAuthor == cmbAuthor.SelectedIndex + 1)
+                    .Select(i => i.IdBookAuthor).FirstOrDefault();
 
                     EditBook.IdAgeReating = AppData.context.AgeRating
                     .Where(i => i.NameRaiting == cmbAgeRaiting.Text)
@@ -321,12 +332,19 @@ namespace LibraryManager.Windows
             }
         }
 
+        private void txtCountInLibrary_PreviewTextInput(object sender, TextCompositionEventArgs e)// запрет на ввод всего, кроме цифр
+        {
+
+            e.Handled = "0123456789".IndexOf(e.Text) < 0;
+        }
+
+
         private void TextBlock_GotFocus(object sender, RoutedEventArgs e)// Доделать
         {
 
         }
 
-        private void TextBlock_LostFocus(object sender, RoutedEventArgs e)
+        private void TextBlock_LostFocus(object sender, RoutedEventArgs e)// Доделать
         {
 
         }

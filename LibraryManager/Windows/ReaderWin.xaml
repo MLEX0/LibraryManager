@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryManager.Windows"
         mc:Ignorable="d"
-        Title="ReaderWin" 
+        Title="Читатели" 
         Height="700" 
         Width="1200"
         WindowStartupLocation="CenterScreen"
@@ -380,11 +380,6 @@
                        FontSize="15"
                        TextWrapping="Wrap"
                        VerticalAlignment="Center"/>
-
-
-
-
-
 
 
             <Grid Grid.Row="14"

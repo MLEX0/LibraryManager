@@ -34,23 +34,23 @@ namespace LibraryManager.Windows
         {
             InitializeComponent();
 
-            txtNameLib.Text = $"{currentuser.LastName.ToString()} {currentuser.FirstName.ToString()}";
+            txtNameLib.Text = $"{currentuser.LastName} {currentuser.FirstName}";
             txtHeaderReaderName.Text = $"Операции пользователя  '{selectedreader.ReaderFIO}' Id - {selectedreader.IdReader}";
 
             CurrentUser = currentuser;
             SelectReader = selectedreader;
 
-            lvSession.ItemsSource = AppData.context.ViewSessions.Where(i => i.IdReader == selectedreader.IdReader).ToList();
+            lvSession.ItemsSource = AppData.context.ViewSessions.Where(i => i.IdReader == selectedreader.IdReader).ToList();// заполнение листвью
         }
 
-        private void ShowViewBar()
+        private void ShowViewBar()// открытие поля просмотра
         {
             grdViewBar.Visibility = Visibility.Visible;
             brdNoSelected.Visibility = Visibility.Hidden;
             txtNoSelected.Visibility = Visibility.Hidden;
         }
 
-        private void HideViewBar()
+        private void HideViewBar()// скрытие
         {
             grdViewBar.Visibility = Visibility.Hidden;
             brdNoSelected.Visibility = Visibility.Visible;
@@ -72,7 +72,7 @@ namespace LibraryManager.Windows
             lvSession.ItemsSource = AppData.context.ViewSessions.Where(i => i.IdReader == SelectReader.IdReader).ToList();
         }
 
-        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        private void btnRemove_Click(object sender, RoutedEventArgs e)// Окончательное удаление сессии
         {
             if (lvSession.SelectedItem is ViewSessions selectsession)
             {
@@ -81,7 +81,7 @@ namespace LibraryManager.Windows
                 if (result == MessageBoxResult.Yes)
                 {
                     DelSession = AppData.context.Session.Where(i => i.IdSession == selectsession.IdSession).FirstOrDefault(); 
-                    if (selectsession.DateOfEnd == null)
+                    if (selectsession.DateOfEnd == null)// проверка на завершение
                     {
                         MessageBox.Show("Нельзя удалить незавершённую сессию!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
@@ -90,6 +90,7 @@ namespace LibraryManager.Windows
                     {
                         AppData.context.Session.Remove(DelSession);
                         AppData.context.SaveChanges();
+                        HideViewBar();
                     }
                 }
             }
@@ -98,10 +99,17 @@ namespace LibraryManager.Windows
                 MessageBox.Show("Запись не выбрана", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
             }
 
-            lvSession.ItemsSource = AppData.context.ViewSessions.Where(i => i.IdReader == SelectReader.IdReader).ToList();
+            lvSession.ItemsSource = AppData.context.ViewSessions.Where(i => i.IdReader == SelectReader.IdReader).ToList();// обновление листа
         }
 
-        private void btnReturn_Click(object sender, RoutedEventArgs e)
+        private void BookCountChange()// количество книг
+        {
+            EditBook.CountBooksInLibrary++;
+            EditBook.CountBooksInUse--;
+            AppData.context.SaveChanges();
+        }
+
+        private void btnReturn_Click(object sender, RoutedEventArgs e) // возвращение книги
         {
             if (lvSession.SelectedItem is ViewSessions selectsession)
             {
@@ -112,15 +120,17 @@ namespace LibraryManager.Windows
                 {
                     if (selectsession.DateOfEnd != null)
                     {
-                        MessageBox.Show("Сессия уже завершена!");
+                        MessageBox.Show("Сессия уже завершена!");// если сессия уже завершена
                     }
                     else
                     {
-                        EditBook.CountBooksInLibrary++;
-                        EditBook.CountBooksInUse--;
                         EditSession.DateOfEnd = System.DateTime.Now;
                         AppData.context.SaveChanges();
+
+                        HideViewBar();
                     }
+
+                    BookCountChange();
                 }
             }
             else
@@ -128,10 +138,11 @@ namespace LibraryManager.Windows
                 MessageBox.Show("Запись не выбрана", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
             }
 
+            
             lvSession.ItemsSource = AppData.context.ViewSessions.Where(i => i.IdReader == SelectReader.IdReader).ToList();
         }
 
-        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
+        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)// поиск сессии
         {
             lvSession.ItemsSource = AppData.context.ViewSessions.Where(i => i.LibrarianFirstName.Contains(txtSearch.Text)
             || i.LibrarianLastName.Contains(txtSearch.Text)
@@ -145,21 +156,23 @@ namespace LibraryManager.Windows
             || i.AuthorMeddleName.Contains(txtSearch.Text)).ToList();
         }
 
-        private void Border_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void Grid_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)// выбор пользователя и просмотр
         {
-            if (lvSession.SelectedItem is ViewSessions selectitem)
+            if (lvSession.SelectedItem is ViewSessions selectitem)// приведение к типу
             {
                 ShowViewBar();
+
+                Session selectsession = AppData.context.Session.Where(i => i.IdSession == selectitem.IdSession).FirstOrDefault();
 
                 txtLibrarian.Text = selectitem.LibrarianFIO;
                 txtDateOfBegin.Text = Convert.ToString(selectitem.DateOfBegin);
                 txtReader.Text = selectitem.ReaderFIO;
-                if (selectitem.DateOfEnd == null)
+                if (selectsession.DateOfEnd == null)
                 {
                     txtStat.Text = "Не завершена";
                     btnReturn.Visibility = Visibility.Visible;
                 }
-                else if (selectitem.DateOfEnd != null)
+                else if (selectsession.DateOfEnd != null)
                 {
                     txtStat.Text = "Завершена";
                     btnReturn.Visibility = Visibility.Hidden;
