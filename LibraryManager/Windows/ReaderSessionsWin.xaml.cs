@@ -41,6 +41,8 @@ namespace LibraryManager.Windows
             SelectReader = selectedreader;
 
             lvSession.ItemsSource = AppData.context.ViewSessions.Where(i => i.IdReader == selectedreader.IdReader).ToList();// заполнение листвью
+
+            
         }
 
         private void ShowViewBar()// открытие поля просмотра
@@ -80,8 +82,9 @@ namespace LibraryManager.Windows
 
                 if (result == MessageBoxResult.Yes)
                 {
+
                     DelSession = AppData.context.Session.Where(i => i.IdSession == selectsession.IdSession).FirstOrDefault(); 
-                    if (selectsession.DateOfEnd == null)// проверка на завершение
+                    if (DelSession.DateOfEnd == null)// проверка на завершение
                     {
                         MessageBox.Show("Нельзя удалить незавершённую сессию!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
@@ -128,6 +131,8 @@ namespace LibraryManager.Windows
                         AppData.context.SaveChanges();
 
                         HideViewBar();
+                        lvSession.ItemsSource = AppData.context.ViewSessions.Where(i => i.IdReader == SelectReader.IdReader).ToList();
+                        
                     }
 
                     BookCountChange();

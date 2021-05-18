@@ -38,29 +38,35 @@ namespace LibraryManager.Windows
                 var result = MessageBox.Show("Удалить выбранного пользователя?", "Удаление пользователя", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)
                 {
-                    SessionDel = AppData.context.Session.Where(i => i.IdLibrarian == librarian.IdLibrarian).ToList();
-
-                    if (AppData.context.Session.Where(i => i.IdLibrarian == librarian.IdLibrarian).FirstOrDefault() != null)
+                    if (currentUser != librarian)
                     {
-                        var result2 = MessageBox.Show("Вместе с книгой будут удалены все операции, которые с ним связаны! " +
-                            "\n Продолжить удаление?", "Продолжить?", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                        if (result2 == MessageBoxResult.Yes)
+                        SessionDel = AppData.context.Session.Where(i => i.IdLibrarian == librarian.IdLibrarian).ToList();
+
+                        if (AppData.context.Session.Where(i => i.IdLibrarian == librarian.IdLibrarian).FirstOrDefault() != null)
                         {
-                            for (int i = 0; i < SessionDel.Count(); i++)
+                            var result2 = MessageBox.Show("Вместе с этим пользователем будут удалены все операции, которые с ним связаны! " +
+                                "\n Продолжить удаление?", "Продолжить?", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                            if (result2 == MessageBoxResult.Yes)
                             {
-                                AppData.context.Session.Remove(SessionDel[i]);
+                                for (int i = 0; i < SessionDel.Count(); i++)
+                                {
+                                    AppData.context.Session.Remove(SessionDel[i]);
+                                }
+                            }
+                            else if (result2 == MessageBoxResult.No)
+                            {
+                                return;
                             }
                         }
-                        else if (result2 == MessageBoxResult.No)
-                        {
-                            return;
-                        }
+
+                        AppData.context.Librarian.Remove(librarian);
+                        AppData.context.SaveChanges();
                     }
-
-                    AppData.context.Librarian.Remove(librarian);
-                    AppData.context.SaveChanges();
+                    else
+                    {
+                        MessageBox.Show("Вы не можете удалить текущего пользователя!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
-
             }
             else
             {

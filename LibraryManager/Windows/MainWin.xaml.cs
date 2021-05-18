@@ -224,6 +224,22 @@ namespace LibraryManager.Windows
                 }
                 else
                 {
+                    bool ret = false;
+                    for (int i = 0; i < HelpClass.HelpData.AddedInSessionBooks.Count();i++)
+                    {
+                        if (HelpData.AddedInSessionBooks[i].IdBook == selectbook.IdBook)
+                        {
+                            MessageBox.Show("Эта книга уже выбрана!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            ret = true;
+                        }
+                    }
+
+                    if (ret == true)
+                    {
+                        ret = false;
+                        return;
+                    }
+
                     HelpClass.HelpData.AddedInSessionBooks.Add(selectbook);
                     this.Close();
                 }

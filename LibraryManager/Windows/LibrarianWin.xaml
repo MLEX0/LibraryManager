@@ -61,7 +61,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Id" DisplayMemberBinding="{Binding IdLibrarian}"  TextBlock.FontSize="20"/>
-                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding FirsttName}" TextBlock.FontSize="20"/>
+                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding FirstName}" TextBlock.FontSize="20"/>
                     <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding LastName}" TextBlock.FontSize="20"/>
                     <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding MeddleName}" TextBlock.FontSize="20"/>
                     <GridViewColumn Header="Роль" DisplayMemberBinding="{Binding Role.RoleName}" TextBlock.FontSize="20"/>

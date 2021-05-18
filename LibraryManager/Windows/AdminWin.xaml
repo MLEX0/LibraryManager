@@ -6,10 +6,12 @@
         xmlns:local="clr-namespace:LibraryManager.Windows"
         mc:Ignorable="d"
         Title="Окно администратора" 
-        Height="550" 
-        Width="420"
+        Height="590" 
+        Width="400"
+        MinWidth="400"
         WindowStartupLocation="CenterScreen"
-        Background="#FF312C28">
+        Background="#FF312C28"
+        ResizeMode="NoResize">
     
     <Grid>
         <Grid.ColumnDefinitions>

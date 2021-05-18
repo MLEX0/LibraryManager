@@ -52,7 +52,6 @@
                      VerticalContentAlignment="Center"
                      FontFamily="Corbel" 
                      TextChanged="txtSearch_TextChanged" 
-                     
                      />
 
             <TextBlock Margin="100 0 0 0"

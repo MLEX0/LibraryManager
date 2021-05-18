@@ -110,7 +110,7 @@
                                 <RowDefinition Height="60"/>
                             </Grid.RowDefinitions>
 
-                            <StackPanel Grid.Row="0" Grid.RowSpan="2">
+                            <WrapPanel Grid.Row="0" Grid.RowSpan="2">
                                 <TextBlock                 Grid.Row="0" 
                                            Text="{Binding BookAuthor.AuthorFIO}"
                                            TextWrapping="Wrap" 
@@ -127,20 +127,34 @@
 
                                 <TextBlock  
                                             Grid.Row="0" 
-                                            Text="{Binding DateOfIssue}"
+                                            Text=" "
                                             FontSize="18"
                                             TextWrapping="Wrap"
                                             />
 
                                 <TextBlock  
                                             Grid.Row="0" 
-                                            Text="{Binding AgeRaiting.NameRaiting}"
+                                            Text="{Binding DateOfIssue }"
+                                            FontSize="18"
+                                            TextWrapping="Wrap"
+                                            />
+
+                                <TextBlock  
+                                            Grid.Row="0" 
+                                            Text=" Рейтинг: "
+                                            FontSize="18"
+                                            TextWrapping="Wrap"
+                                            />
+
+                                <TextBlock  
+                                            Grid.Row="0" 
+                                            Text="{Binding AgeRating.NameRaiting }"
                                             FontSize="18"
                                             TextWrapping="Wrap"
                                             />
 
 
-                            </StackPanel>
+                            </WrapPanel>
                         </Grid>
 
                         <Border Grid.Column="0" 
